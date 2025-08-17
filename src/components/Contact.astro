@@ -1,0 +1,143 @@
+---
+import { author } from '../sample'
+import svgPinkStar from '../assets/pink-star.svg'
+import svgBlueStar from '../assets/blue-star-card.svg'
+---
+
+<section id="contact" class="py-20 relative overflow-hidden">
+  <img src={svgPinkStar.src} alt="decoration" width="60" class="absolute top-10 right-10 opacity-50" />
+  <img src={svgBlueStar.src} alt="decoration" width="40" class="absolute bottom-20 left-10 opacity-50" />
+  
+  <div class="max-w-4xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        Let's Work
+        <span class="relative">
+          <span class="absolute bg-[var(--yellow)] w-full h-[50%] left-0 bottom-0 z-1"></span>
+          <span class="relative z-5">Together</span>
+        </span>
+      </h2>
+      <p class="text-xl text-gray-600">Ready to bring your ideas to life? Get in touch!</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-white border-3 border-black p-6 relative">
+        <div class="size-2 bg-white border-2 border-black absolute -top-2 -right-2"></div>
+        <div class="size-2 bg-white border-2 border-black absolute -top-2 -left-2"></div>
+        <div class="size-2 bg-white border-2 border-black absolute -bottom-2 -left-2"></div>
+        <div class="size-2 bg-white border-2 border-black absolute -bottom-2 -right-2"></div>
+
+        <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+          <i class="ri-phone-line text-[var(--yellow)]"></i>
+          Contact Information
+        </h3>
+
+        <div class="space-y-4">
+          <!-- Email -->
+          <div class="flex items-center gap-3 p-3 border-2 border-gray-200 hover:border-black transition-colors rounded">
+            <i class="ri-mail-line text-xl text-blue-600"></i>
+            <div>
+              <p class="font-semibold text-sm text-gray-600">Email</p>
+              <a href={author.email} class="sm:text-lg hover:text-blue-600 transition-colors">
+                {author.email.replace('mailto:', '')}
+              </a>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="flex items-center gap-3 p-3 border-2 border-gray-200 hover:border-black transition-colors rounded">
+            <i class="ri-phone-line text-xl text-green-600"></i>
+            <div>
+              <p class="font-semibold text-sm text-gray-600">Phone</p>
+              <a href={`tel:${author.phone}`} class="sm:text-lg hover:text-green-600 transition-colors">
+                {author.phone}
+              </a>
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="flex items-center gap-3 p-3 border-2 border-gray-200 hover:border-black transition-colors rounded">
+            <i class="ri-map-pin-line text-xl text-red-600"></i>
+            <div>
+              <p class="font-semibold text-sm text-gray-600">Location</p>
+              <p class="sm:text-lg">{author.address}</p>
+              <p class="text-sm text-gray-500">{author.timezone}</p>
+            </div>
+          </div>
+
+          <!-- Availability Status -->
+          <div class="flex items-center gap-3 p-3 border-2 border-gray-200 hover:border-black transition-colors rounded">
+            <i class={`ri-checkbox-circle-line text-xl ${author.availableForWork ? 'text-green-600' : 'text-orange-600'}`}></i>
+            <div>
+              <p class="font-semibold text-sm text-gray-600">Availability</p>
+              <p class={`text-lg font-semibold ${author.availableForWork ? 'text-green-600' : 'text-orange-600'}`}>
+                {author.availableForWork ? 'Available for work' : 'Currently unavailable'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border-3 border-black p-6 relative">
+        <div class="size-2 bg-white border-2 border-black absolute -top-2 -right-2"></div>
+        <div class="size-2 bg-white border-2 border-black absolute -top-2 -left-2"></div>
+        <div class="size-2 bg-white border-2 border-black absolute -bottom-2 -left-2"></div>
+        <div class="size-2 bg-white border-2 border-black absolute -bottom-2 -right-2"></div>
+
+        <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+          <i class="ri-links-line text-[var(--yellow)]"></i>
+          Connect With Me
+        </h3>
+
+        <div class="space-y-4">
+          <a href={author.linkedin} target="_blank" 
+             class="flex items-center gap-3 p-3 border-2 border-gray-200 hover:border-gray-700 transition-all hover:shadow-md group rounded">
+            <i class="ri-linkedin-box-line text-xl text-gray-700 group-hover:scale-110 transition-transform"></i>
+            <div>
+              <p class="font-semibold">LinkedIn</p>
+              <p class="text-sm text-gray-600">Professional network</p>
+            </div>
+          </a>
+
+          <a href={author.github} target="_blank" 
+             class="flex items-center gap-3 p-3 border-2 border-gray-200 hover:border-gray-700 transition-all hover:shadow-md group rounded">
+            <i class="ri-github-line text-xl text-gray-700 group-hover:scale-110 transition-transform"></i>
+            <div>
+              <p class="font-semibold">GitHub</p>
+              <p class="text-sm text-gray-600">Code repositories</p>
+            </div>
+          </a>
+
+          <a href={author.x} target="_blank" 
+             class="flex items-center gap-3 p-3 border-2 border-gray-200 hover:border-black transition-all hover:shadow-md group rounded">
+            <i class="ri-twitter-x-line text-xl text-black group-hover:scale-110 transition-transform"></i>
+            <div>
+              <p class="font-semibold">X (Twitter)</p>
+              <p class="text-sm text-gray-600">Latest updates</p>
+            </div>
+          </a>
+
+          <div class="mt-6 p-4 bg-[var(--yellow)] bg-opacity-20 border-2 border-[var(--yellow)] rounded">
+            <div class="flex items-center gap-2">
+              <i class="ri-time-line size-6"></i>
+              <p class="font-semibold">Quick Response</p>
+            </div>
+            <p class="text-sm mt-1">I typically respond within 24 hours</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <a href={author.email} 
+         class="inline-flex items-center gap-2 bg-black text-white px-8 py-4 border-3 border-black hover:bg-white hover:text-black transition-all duration-200 text-lg font-semibold relative group">
+        <i class="ri-mail-send-line group-hover:translate-x-1 transition-transform"></i>
+        Send me an email
+        <div class="size-2 bg-white border-2 border-black absolute -top-2 -right-2 group-hover:bg-black transition-colors"></div>
+        <div class="size-2 bg-white border-2 border-black absolute -top-2 -left-2 group-hover:bg-black transition-colors"></div>
+        <div class="size-2 bg-white border-2 border-black absolute -bottom-2 -left-2 group-hover:bg-black transition-colors"></div>
+        <div class="size-2 bg-white border-2 border-black absolute -bottom-2 -right-2 group-hover:bg-black transition-colors"></div>
+      </a>
+    </div>
+  </div>
+</section>
