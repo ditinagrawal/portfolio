@@ -2,6 +2,7 @@
 import '../styles/global.css'
 import Layout from "../layouts/Layout.astro"
 
+import Loader from '../components/Loader.astro'
 import Header from '../components/Header.astro'
 import Hero from '../components/Hero.astro'
 import Tools from '../components/Tools.astro'
@@ -15,6 +16,8 @@ import Contact from '../components/Contact.astro'
 ---
 
 
+<Loader />
+
 <Layout>
   <Header />
   <Hero />
@@ -26,4 +29,21 @@ import Contact from '../components/Contact.astro'
   <CallToAction />
   <Footer />
 </Layout>
+
+<script>
+  // Show main content after loader finishes
+  document.addEventListener('DOMContentLoaded', function() {
+    // Wait for loader to be removed, then show main content
+    const checkLoader = setInterval(() => {
+      const loader = document.getElementById('loader');
+      if (!loader) {
+        const mainContent = document.getElementById('main-content');
+        if (mainContent) {
+          mainContent.style.opacity = '1';
+        }
+        clearInterval(checkLoader);
+      }
+    }, 100);
+  });
+</script>
 

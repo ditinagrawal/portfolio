@@ -1,0 +1,188 @@
+---
+---
+
+<div id="loader" class="loader-container" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; z-index: 9999; background-color: #FEFFF0;">
+  <div class="loader-content" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 3rem;">
+    <div class="hello-text" style="display: flex; font-family: 'Space Grotesk', sans-serif; font-size: 4rem; font-weight: 700; color: #333; gap: 0.1rem;">
+      <span class="letter" style="display: inline-block; opacity: 0;">H</span>
+      <span class="letter" style="display: inline-block; opacity: 0;">e</span>
+      <span class="letter" style="display: inline-block; opacity: 0;">l</span>
+      <span class="letter" style="display: inline-block; opacity: 0;">l</span>
+      <span class="letter" style="display: inline-block; opacity: 0;">o</span>
+    </div>
+    <div class="loader-wave" style="display: flex; gap: 0.3rem; align-items: flex-end; height: 40px;">
+      <div class="wave-bar" style="width: 4px; border-radius: 2px; height: 10px; background: linear-gradient(180deg, #FFDC58 0%, #BAE6FF 100%);"></div>
+      <div class="wave-bar" style="width: 4px; border-radius: 2px; height: 10px; background: linear-gradient(180deg, #FFDC58 0%, #BAE6FF 100%);"></div>
+      <div class="wave-bar" style="width: 4px; border-radius: 2px; height: 10px; background: linear-gradient(180deg, #FFDC58 0%, #BAE6FF 100%);"></div>
+      <div class="wave-bar" style="width: 4px; border-radius: 2px; height: 10px; background: linear-gradient(180deg, #FFDC58 0%, #BAE6FF 100%);"></div>
+      <div class="wave-bar" style="width: 4px; border-radius: 2px; height: 10px; background: linear-gradient(180deg, #FFDC58 0%, #BAE6FF 100%);"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--main-bg, #FEFFF0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+  }
+
+  .loader-container.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .loader-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hello-text {
+    display: flex;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #333;
+    gap: 0.1rem;
+  }
+
+  .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px) rotate(10deg);
+    animation: letterDrop 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  .letter:nth-child(1) { animation-delay: 0.1s; }
+  .letter:nth-child(2) { animation-delay: 0.2s; }
+  .letter:nth-child(3) { animation-delay: 0.3s; }
+  .letter:nth-child(4) { animation-delay: 0.4s; }
+  .letter:nth-child(5) { animation-delay: 0.5s; }
+
+  .loader-wave {
+    display: flex;
+    gap: 0.3rem;
+    align-items: flex-end;
+    height: 40px;
+  }
+
+  .wave-bar {
+    width: 4px;
+    background: linear-gradient(180deg, var(--yellow, #FFDC58) 0%, var(--blue, #BAE6FF) 100%);
+    border-radius: 2px;
+    animation: wave 1.2s ease-in-out infinite;
+  }
+
+  .wave-bar:nth-child(1) { animation-delay: 0s; }
+  .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+  .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+  .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+  .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+
+  @keyframes letterDrop {
+    0% {
+      opacity: 0;
+      transform: translateY(50px) rotate(10deg);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(-10px) rotate(-5deg);
+    }
+    80% {
+      transform: translateY(5px) rotate(2deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg);
+    }
+  }
+
+  @keyframes wave {
+    0%, 100% {
+      height: 10px;
+    }
+    50% {
+      height: 40px;
+    }
+  }
+
+  /* Floating animation for the whole hello text after letters settle */
+  .hello-text {
+    animation: float 3s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Pulse effect for the entire loader content */
+  .loader-content {
+    animation: contentPulse 2s ease-in-out infinite;
+    animation-delay: 1.5s;
+  }
+
+  @keyframes contentPulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hello-text {
+      font-size: 2.5rem;
+    }
+    
+    .loader-content {
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hello-text {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const loader = document.getElementById('loader');
+
+    function hideLoader() {
+      if (loader) {
+        loader.classList.add('hidden');
+        // Remove loader from DOM after transition
+        setTimeout(() => {
+          if (loader && loader.parentNode) {
+            loader.parentNode.removeChild(loader);
+          }
+        }, 800);
+      }
+    }
+
+    // Hide loader after animations complete (letters drop + some float time)
+    setTimeout(() => {
+      hideLoader();
+    }, 2000);
+  });
+</script>
