@@ -1,0 +1,60 @@
+---
+import Bars from "./Bars.astro"
+
+import svgUnderline from '../assets/underline.svg'
+import arrowCard from '../assets/arrow-card.svg'
+
+import dreamlegal from '../assets/projects/dreamlegal.png'
+import workongigs from '../assets/projects/workongigs.png'
+import utools from '../assets/projects/utools.png'
+import feebo from '../assets/projects/feebo.png'
+
+const portfolio = [
+  { 
+    name: 'Dream Legal', desc: `Simplify technology decisions with trusted products and industry insights for legal teams.`,
+    cover: dreamlegal.src,
+    link: 'https://dreamlegal.in'
+  },
+  { 
+    name: 'Work on Gigs', desc: `Ensure freelancers get paid and clients receive satisfactory work.`,
+    cover: workongigs.src,
+    link: 'https://workongigs.com'
+  },
+  { 
+    name: 'Utools', desc: `Get accurate, reliable, and easy-to-use transformed content for any YouTube video. Save hours of manual work.`,
+    cover: utools.src,
+    link: 'https://utools-beta.vercel.app'
+  },
+  { 
+    name: 'Feebo', desc: `Lets you collect feedback from your customers prioritize features, and build a product users love.`,
+    cover: feebo.src,
+    link: 'https://feebo.vercel.app'
+  },
+]
+---
+
+
+<section class="py-25 space-y-10 px-5" id="work">
+    <div class="max-w-md mx-auto relative ">
+      <h1 class="text-4xl font-medium text-center">My Works</h1>
+      <img src={svgUnderline.src} alt="arrow" width="140" class="absolute left-50 -bottom-1" />
+    </div>
+  
+    <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10"> 
+      {portfolio.map(item => ( 
+        <a href={item.link} class="flex flex-col bg-white p-5 group relative transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
+          <div class="w-full h-[200px] overflow-hidden border-2">
+           <img src={item.cover} alt="" class="w-full h-full object-cover" />
+          </div>
+          <div class="space-y-1 pt-4">
+            <div class="flex pr-2">
+              <h2 class="text-xl font-medium flex-1">{item.name}</h2>
+              <img src={arrowCard.src} alt="arrow" width="25" />
+            </div>
+            <p class="mr-20">{item.desc}</p>
+          </div>
+          <Bars />
+        </a>
+      ))}
+    </div>
+</section>

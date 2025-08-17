@@ -1,0 +1,55 @@
+---
+const mytools = [
+  { name: 'Astro', icon: '/src/assets/tools/astro.svg' },
+  { name: 'React', icon: '/src/assets/tools/react.svg' },
+  { name: 'TypeScript', icon: '/src/assets/tools/typescript.svg' },
+  { name: 'JavaScript', icon: '/src/assets/tools/javascript.svg' },
+  { name: 'Next.js', icon: '/src/assets/tools/nextjs.svg' },
+  { name: 'Node.js', icon: '/src/assets/tools/node.svg' },
+  { name: 'Express', icon: '/src/assets/tools/express.svg' },
+  { name: 'MongoDB', icon: '/src/assets/tools/mongodb.svg' },
+  { name: 'PostgreSQL', icon: '/src/assets/tools/postgresql.svg' },
+  { name: 'Prisma', icon: '/src/assets/tools/prisma.svg' },
+  { name: 'TailwindCSS', icon: '/src/assets/tools/tailwindcss.svg' },
+  { name: 'CSS', icon: '/src/assets/tools/css.svg' },
+  { name: 'HTML', icon: '/src/assets/tools/html.svg' },
+  { name: 'Git', icon: '/src/assets/tools/git.svg' },
+  { name: 'Docker', icon: '/src/assets/tools/docker.svg' },
+  { name: 'AWS', icon: '/src/assets/tools/aws.svg' },
+  { name: 'BetterAuth', icon: '/src/assets/tools/betterauth.svg' },
+  { name: 'ShadCN', icon: '/src/assets/tools/shadcn.svg' }
+]
+
+--- 
+<script>
+import { gsap } from 'gsap';
+
+document.addEventListener('DOMContentLoaded', function () {
+    const clonedContainer = document.querySelector('#cloned') as any
+
+    Array.from(clonedContainer.children).forEach((img: any) => {
+        const clone = img.cloneNode(true); 
+        clonedContainer.appendChild(clone); 
+    })
+
+    const tl = gsap.timeline({ repeat: -1 });
+    tl.to(clonedContainer, {
+        x: -(clonedContainer.scrollWidth / 2),  duration: 30, ease: 'none'
+    })
+});
+</script>
+  
+
+
+<section class="bg-black py-6 relative z-5">
+    <div class="overflow-hidden">
+        <div class="flex items-center gap-10 md:gap-30" id="cloned">
+            {mytools.map(tool => (
+              <div class="flex items-center gap-3 text-white flex-1 text-2xl whitespace-nowrap">
+                <img src={tool.icon} alt={tool.name} class="w-8 h-8 md:w-10 md:h-10" />
+                <span>{tool.name}</span>
+              </div>
+            ))}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,50 @@
+---
+import svgNew from '../assets/new.svg'
+
+const testimonials = [
+  { 
+    comment: `“He is highly recommendable for his skills and passion.”`,
+    author: {
+      name: `Ranjan Singhania`,
+      pos: `Director, DreamLegal`,
+    },
+    cls: `rotate-2 -translate-y-10`
+   },
+   { 
+    comment: `“Very good at his work. Product delivery is on time.”`,
+    author: {
+      name: `Rali Benjelloun`,
+      pos: `Video Editor`,
+    },
+    cls: `-rotate-2 -translate-x-10  z-5`
+   },
+]
+---
+
+
+<section>
+    <div class="max-w-4xl mx-auto pb-20 px-10 overflow-hidden">
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="flex relative">
+          <h1 class="text-3xl">Here’s what my clients are saying about my work</h1>
+          <img src={svgNew.src} alt="arrow" width="40" class="absolute -right-3 md:-right-10 bottom-0" />
+        </div>
+      </div>
+  
+  
+      <div class="grid grid-cols-1 md:grid-cols-2 py-30">
+        {testimonials.map(item => ( 
+          <div class={`flex flex-col gap-3 p-5 pr-15 bg-white border-2 shadow-[6px_6px_0px_rgba(0,0,0,0.3)] ${item.cls}`}>
+            <p>{item.comment}</p>
+            <div class="flex items-center gap-2">
+              <div>
+                <h3 class="font-medium">{item.author.name}</h3>
+                <p>{item.author.pos}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+  
+    </div>
+   </section>
