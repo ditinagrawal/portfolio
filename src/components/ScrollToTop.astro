@@ -1,0 +1,49 @@
+---
+// ScrollToTop Component
+---
+
+<button 
+  id="scroll-to-top" 
+  class="fixed bottom-6 right-6 w-12 h-12 bg-black text-white rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-gray-800 hover:scale-110 z-50 border-2 border-black hover:border-gray-800"
+  aria-label="Scroll to top"
+>
+  <i class="ri-arrow-up-line text-xl"></i>
+</button>
+
+<style>
+  #scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const scrollToTopButton = document.getElementById('scroll-to-top');
+    const scrollThreshold = 300; // Show button after scrolling 300px
+
+    function toggleScrollButton() {
+      if (window.scrollY > scrollThreshold) {
+        scrollToTopButton?.classList.add('show');
+      } else {
+        scrollToTopButton?.classList.remove('show');
+      }
+    }
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Listen for scroll events
+    window.addEventListener('scroll', toggleScrollButton);
+    
+    // Listen for button clicks
+    scrollToTopButton?.addEventListener('click', scrollToTop);
+
+    // Initial check in case page is already scrolled
+    toggleScrollButton();
+  });
+</script>
