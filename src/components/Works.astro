@@ -8,6 +8,7 @@ import dreamlegal from '../assets/projects/dreamlegal.png'
 import workongigs from '../assets/projects/workongigs.png'
 import utools from '../assets/projects/utools.png'
 import feebo from '../assets/projects/feebo.png'
+import betterui from '../assets/projects/betterui.png'
 
 const portfolio = [
   { 
@@ -20,6 +21,11 @@ const portfolio = [
     cover: workongigs.src,
     link: 'https://workongigs.com'
   },
+  {
+    name: "Better UI", desc: "Better UI is a collection of better components built for use with Shadcn.",
+    cover: betterui.src,
+    link: 'https://better-ui.ditin.in'
+  },
   { 
     name: 'Utools', desc: `Get accurate, reliable, and easy-to-use transformed content for any YouTube video. Save hours of manual work.`,
     cover: utools.src,
@@ -31,6 +37,8 @@ const portfolio = [
     link: 'https://feebo.vercel.app'
   },
 ]
+
+const ITEMS_PER_PAGE = 4;
 ---
 
 
@@ -40,21 +48,80 @@ const portfolio = [
       <img src={svgUnderline.src} alt="arrow" width="140" class="absolute left-50 -bottom-1" />
     </div>
   
-    <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10"> 
-      {portfolio.map(item => ( 
-        <a href={item.link} class="flex flex-col bg-white p-5 group relative transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
+    <div class="max-w-3xl mx-auto space-y-8">
+      <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 gap-10"> 
+        {portfolio.slice(0, ITEMS_PER_PAGE).map(item => ( 
+          <a href={item.link} class="portfolio-item flex flex-col bg-white p-5 group relative transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
+            <div class="w-full h-[200px] overflow-hidden border-2">
+             <img src={item.cover} alt="" class="w-full h-full object-cover" />
+            </div>
+            <div class="space-y-1 pt-4">
+              <div class="flex pr-2">
+                <h2 class="text-xl font-medium flex-1">{item.name}</h2>
+                <img src={arrowCard.src} alt="arrow" width="25" />
+              </div>
+              <p class="mr-20">{item.desc}</p>
+            </div>
+            <Bars />
+          </a>
+        ))}
+      </div>
+      
+      {portfolio.length > ITEMS_PER_PAGE && (
+        <div class="flex justify-center">
+          <button 
+            id="show-more-btn" 
+            class="bg-black text-white px-8 py-3 font-medium hover:bg-gray-800 transition-colors duration-200"
+          >
+            Show More
+          </button>
+        </div>
+      )}
+    </div>
+</section>
+
+<script define:vars={{ portfolio, arrowCard }}>
+  let currentIndex = 4;
+  const itemsPerPage = 4;
+  
+  const showMoreBtn = document.getElementById('show-more-btn');
+  const portfolioGrid = document.getElementById('portfolio-grid');
+  
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener('click', () => {
+      const nextItems = portfolio.slice(currentIndex, currentIndex + itemsPerPage);
+      
+      nextItems.forEach(item => {
+        const portfolioItem = document.createElement('a');
+        portfolioItem.href = item.link;
+        portfolioItem.className = 'portfolio-item flex flex-col bg-white p-5 group relative transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]';
+        
+        portfolioItem.innerHTML = `
           <div class="w-full h-[200px] overflow-hidden border-2">
-           <img src={item.cover} alt="" class="w-full h-full object-cover" />
+            <img src="${item.cover}" alt="" class="w-full h-full object-cover" />
           </div>
           <div class="space-y-1 pt-4">
             <div class="flex pr-2">
-              <h2 class="text-xl font-medium flex-1">{item.name}</h2>
-              <img src={arrowCard.src} alt="arrow" width="25" />
+              <h2 class="text-xl font-medium flex-1">${item.name}</h2>
+              <img src="${arrowCard.src}" alt="arrow" width="25" />
             </div>
-            <p class="mr-20">{item.desc}</p>
+            <p class="mr-20">${item.desc}</p>
           </div>
-          <Bars />
-        </a>
-      ))}
-    </div>
-</section>
+          <div class="absolute left-[50%] bottom-0 -translate-x-[50%] border-b-3 w-[105%] rounded-full"></div>
+          <div class="absolute left-[50%] top-0 -translate-x-[50%] border-b-3 w-[105%] rounded-full"></div>
+          <div class="absolute left-0 -bottom-2 border-l-3 h-[105%] rounded-full"></div>
+          <div class="absolute right-0 -bottom-2 border-r-3 h-[105%] rounded-full"></div>
+        `;
+        
+        portfolioGrid.appendChild(portfolioItem);
+      });
+      
+      currentIndex += itemsPerPage;
+      
+      // Hide button if no more items
+      if (currentIndex >= portfolio.length) {
+        showMoreBtn.style.display = 'none';
+      }
+    });
+  }
+</script>
