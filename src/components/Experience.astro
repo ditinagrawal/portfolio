@@ -1,0 +1,74 @@
+---
+import svgUnderline from '../assets/underline.svg'
+import svgRedStar from '../assets/red-star.svg'
+import svgBlueStar from '../assets/blue-star-card.svg'
+import Bars from "./Bars.astro"
+
+const experiences = [
+  {
+    title: 'Full Stack Developer',
+    company: 'DreamLegal',
+    period: '2025 - 2025',
+    type: 'Part-time',
+    description: 'Built frontend, modular components and efficient api’s to improve user experience and scalability. Optimized performance and load speed by compressing images, refactoring code resulting in a 30% improvement in website speed.',
+    skills: ['React', 'Next.js', 'AWS', 'Prisma', 'PostgreSQL']
+  },
+  {
+    title: 'Full Stack Developer',
+    company: '_none_',
+    period: '2022 - 2025',
+    type: 'Freelance',
+    description: 'Built and maintained multiple client projects including SaaS platforms and business management systems using modern web technologies.',
+    skills: ['React', 'Express.js', 'MongoDB', 'Next.js', 'TailwindCSS', 'Docker', 'AWS', 'Prisma', 'PostgreSQL']
+  },
+]
+---
+
+<section class="py-25 space-y-10 px-5 relative overflow-hidden" id="experience">
+  <img src={svgRedStar.src} alt="svg" width="60" class="absolute -left-5 top-10" />
+  <img src={svgBlueStar.src} alt="svg" width="40" class="absolute -right-3 top-1/3" />
+  
+  <div class="max-w-md mx-auto relative">
+    <h1 class="text-4xl font-medium text-center">Experience</h1>
+    <img src={svgUnderline.src} alt="underline" width="140" class="absolute left-50 -bottom-1" />
+  </div>
+
+  <div class="max-w-4xl mx-auto space-y-8">
+    {experiences.map((exp, index) => (
+      <div class="bg-white border-2 border-black p-6 group hover:shadow-[6px_6px_0px_rgba(0,0,0,0.3)] transition-all duration-300 relative">
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 md:gap-8">
+          <div class="space-y-3">
+            <div class="space-y-1">
+              <h3 class="text-2xl font-medium">{exp.title}</h3>
+              <div class="flex flex-col sm:flex-row sm:items-center sm:gap-3">
+                <p class="text-lg font-medium text-gray-700">{exp.company}</p>
+                <span class="hidden sm:block w-1 h-1 bg-gray-400 rounded-full"></span>
+                <span class="text-sm bg-black text-white px-2 py-1 rounded w-fit">{exp.type}</span>
+              </div>
+            </div>
+            <p class="text-gray-600 leading-relaxed">{exp.description}</p>
+            <div class="flex flex-wrap gap-2">
+              {exp.skills.map(skill => (
+                <span class="text-xs bg-gray-100 border border-gray-300 px-2 py-1 rounded">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+          
+          <div class="flex flex-col items-end justify-start">
+            <div class="text-right">
+              <p class="text-lg font-medium">{exp.period}</p>
+            </div>
+          </div>
+        </div>
+        
+        <Bars />
+        
+        {index < experiences.length - 1 && (
+          <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-gray-300"></div>
+        )}
+      </div>
+    ))}
+  </div>
+</section>
