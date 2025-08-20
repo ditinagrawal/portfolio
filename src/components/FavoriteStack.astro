@@ -1,0 +1,169 @@
+---
+// Web Technologies
+import appleIcon from '../assets/tools/apple.svg';
+import awsIcon from '../assets/tools/aws.svg';
+import chromeIcon from '../assets/tools/chrome.svg';
+import coffeeIcon from '../assets/tools/coffee.svg';
+import cursorIcon from '../assets/tools/cursor.svg';
+import dockerIcon from '../assets/tools/docker.svg';
+import expressIcon from '../assets/tools/express.svg';
+import figmaIcon from '../assets/tools/figma.svg';
+import gitIcon from '../assets/tools/git.svg';
+import mongodbIcon from '../assets/tools/mongodb.svg';
+import musicIcon from '../assets/tools/music.svg';
+import nextjsIcon from '../assets/tools/nextjs.svg';
+import nodeIcon from '../assets/tools/node.svg';
+import postgresqlIcon from '../assets/tools/postgresql.svg';
+import prismaIcon from '../assets/tools/prisma.svg';
+import reactIcon from '../assets/tools/react.svg';
+import shadcnIcon from '../assets/tools/shadcn.svg';
+import shipfastIcon from '../assets/tools/shipfast.svg';
+import tailwindcssIcon from '../assets/tools/tailwindcss.svg';
+import typescriptIcon from '../assets/tools/typescript.svg';
+import vercelIcon from '../assets/tools/vercel.svg';
+import astroIcon from '../assets/tools/astro.svg';
+
+// Decorative elements
+import svgBlueStar from '../assets/blue-star-card.svg';
+import svgPinkStar from '../assets/pink-star.svg';
+import svgUnderline from '../assets/underline.svg';
+
+const stackCategories = [
+  {
+    name: 'Web Technologies',
+    description: 'My go-to stack for building modern web applications',
+    tools: [
+      { name: 'Next.js', icon: nextjsIcon.src, description: 'React framework for production', link: 'https://nextjs.org' },
+      { name: 'TypeScript', icon: typescriptIcon.src, description: 'Type-safe JavaScript', link: 'https://typescriptlang.org' },
+      { name: 'React', icon: reactIcon.src, description: 'UI component library', link: 'https://react.dev' },
+      { name: 'TailwindCSS', icon: tailwindcssIcon.src, description: 'Utility-first CSS framework', link: 'https://tailwindcss.com' },
+      { name: 'Shadcn', icon: shadcnIcon.src, description: 'Collection of beautiful components', link: 'https://ui.shadcn.com' },
+      { name: 'Astro', icon: astroIcon.src, description: 'Static site generator', link: 'https://astro.build' }
+    ]
+  },
+  {
+    name: 'Database & Backend',
+    description: 'Reliable data management and server solutions',
+    tools: [
+      { name: 'Node.js', icon: nodeIcon.src, description: 'JavaScript runtime', link: 'https://nodejs.org' },
+      { name: 'Express', icon: expressIcon.src, description: 'Node.js framework', link: 'https://expressjs.com' },
+      { name: 'PostgreSQL', icon: postgresqlIcon.src, description: 'Robust relational database', link: 'https://postgresql.org' },
+      { name: 'MongoDB', icon: mongodbIcon.src, description: 'NoSQL document database', link: 'https://mongodb.com' },
+      { name: 'Prisma', icon: prismaIcon.src, description: 'Type-safe database client', link: 'https://prisma.io' },
+      { name: 'AWS', icon: awsIcon.src, description: 'Cloud infrastructure', link: 'https://aws.amazon.com' }
+    ]
+  },
+  {
+    name: 'Development Tools',
+    description: 'Essential tools for efficient development workflow',
+    tools: [
+      { name: 'Cursor', icon: cursorIcon.src, description: 'AI-powered code editor', link: 'https://cursor.com' },
+      { name: 'Git', icon: gitIcon.src, description: 'Version control system', link: 'https://git-scm.com' },
+      { name: 'Figma', icon: figmaIcon.src, description: 'Design and prototyping', link: 'https://figma.com' },
+      { name: 'Chrome', icon: chromeIcon.src, description: 'Browser', link: 'https://chrome.google.com' },
+      { name: 'Vercel', icon: vercelIcon.src, description: 'Deployment platform', link: 'https://vercel.com' },
+      { name: 'Docker', icon: dockerIcon.src, description: 'Containerization', link: 'https://docker.com' }
+    ]
+  },
+  {
+    name: 'Other Important Stuff',
+    description: 'My current development environment',
+    tools: [
+      { name: 'MacBook Air', icon: appleIcon.src, description: '11-inch, 8GB RAM', link: 'https://apple.com/macbook-air' },
+      { name: 'Coffee', icon: coffeeIcon.src, description: '40 mg of caffeine', link: '/' },
+      { name: 'Music', icon: musicIcon.src, description: 'Can\'t live without it', link: 'https://music.youtube.com' },
+      { name: 'Shipfast', icon: shipfastIcon.src, description: 'My Custom SaaS Template', link: 'https://github.com/ditinagrawal/shipfast' }
+    ]
+  }
+]
+---
+
+<section class="relative px-3 md:px-10 py-20 overflow-hidden">
+  <img src={svgBlueStar.src} alt="svg" width="60" class="absolute -left-5 top-10" />
+  <img src={svgPinkStar.src} alt="svg" width="80" class="absolute -right-8 bottom-20" />
+  
+  <div class="max-w-5xl mx-auto">
+    <!-- Header -->
+    <div class="text-center space-y-4 mb-16">
+      <div class="relative inline-block">
+        <h1 class="text-4xl md:text-5xl font-medium">My Current Favourite Stack</h1>
+        <img src={svgUnderline.src} alt="underline" width="200" class="absolute left-1/2 -translate-x-1/2 -bottom-2" />
+      </div>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        The tools and technologies I'm passionate about right now - always evolving with the latest innovations
+      </p>
+    </div>
+
+    <!-- Stack Categories Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {stackCategories.map((category, index) => (
+        <div class="relative">
+          <div class="bg-white border-2 border-black p-6 h-full">
+            <!-- Category Header -->
+            <div class="mb-6">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  {index + 1}
+                </div>
+                <h2 class="text-2xl font-medium">{category.name}</h2>
+              </div>
+              <p class="text-gray-600">{category.description}</p>
+            </div>
+
+            <!-- Tools Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {category.tools.map(tool => (
+                <a 
+                  href={tool.link} 
+                  target={tool.link.startsWith('/') ? '_self' : '_blank'}
+                  rel={tool.link.startsWith('/') ? '' : 'noopener noreferrer'}
+                  class="flex items-start gap-3 p-3 border border-gray-200 rounded-lg hover:border-black transition-colors duration-200 group cursor-pointer"
+                >
+                  <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center">
+                    {tool.icon ? (
+                      <img 
+                        src={tool.icon} 
+                        alt={tool.name} 
+                        class={`w-8 h-8 ${(tool.name === 'Astro' || tool.name === 'Prisma' || tool.name === 'Shadcn' || tool.name === 'Cursor' || tool.name === 'Vercel' || tool.name === 'MacBook Air' || tool.name === 'Express') ? 'filter invert' : ''}`}
+                      />
+                    ) : (
+                      <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-xs font-bold text-gray-600">
+                        {tool.name.split(' ').map(word => word[0]).join('').substring(0, 2)}
+                      </div>
+                    )}
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h3 class="font-medium text-sm mb-1 group-hover:text-gray-900">{tool.name}</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">{tool.description}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div class="absolute -inset-1 bg-black -z-10 translate-x-1 translate-y-1"></div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom Stats -->
+    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="text-center p-4 border-2 border-black bg-white">
+        <div class="text-2xl font-bold">25+</div>
+        <div class="text-sm text-gray-600">Technologies</div>
+      </div>
+      <div class="text-center p-4 border-2 border-black bg-white">
+        <div class="text-2xl font-bold">3+</div>
+        <div class="text-sm text-gray-600">Years Learning</div>
+      </div>
+      <div class="text-center p-4 border-2 border-black bg-white">
+        <div class="text-2xl font-bold">10+</div>
+        <div class="text-sm text-gray-600">Projects Built</div>
+      </div>
+      <div class="text-center p-4 border-2 border-black bg-white">
+        <div class="text-2xl font-bold">∞</div>
+        <div class="text-sm text-gray-600">Curiosity</div>
+      </div>
+    </div>
+  </div>
+</section>
