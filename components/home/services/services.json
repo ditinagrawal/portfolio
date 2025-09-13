@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Web Development",
+    "description": "Designing and developing responsive, modern, and high-performing websites tailored to meet business objectives and provide a seamless user experience.",
+    "image": "/assets/service-1.png"
+  },
+  {
+    "name": "SEO Optimization",
+    "description": "Enhancing website visibility and ranking through keyword research, on-page optimization, technical SEO, and content strategies tailored to drive organic traffic and growth.",
+    "image": "/assets/service-2.png"
+  },
+  {
+    "name": "AI Automation",
+    "description": "Integrating AI technologies into applications to enhance functionality, automate processes, and improve user experience through intelligent solutions.",
+    "image": "/assets/service-3.png"
+  },
+  {
+    "name": "Prototyping & Testing",
+    "description": "Creating interactive prototypes and conducting user testing to validate design concepts, gather feedback, and ensure usability and functionality.",
+    "image": "/assets/service-4.png"
+  }
+]

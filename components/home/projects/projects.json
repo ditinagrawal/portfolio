@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Real Time Notification System",
+    "description": "Ping is the simplest way to monitor your SaaS. Instantly receive notifications for payments, new users, or any event—delivered straight to your Discord.",
+    "image": "/assets/project-1.png",
+    "link": "https://ping.ditin.in"
+  },
+  {
+    "name": "Collect Feedback, Build Better Products",
+    "description": "Developed a feedback collection platform enabling users to collect and organize user feedback in one place, emphasizing seamless user interaction and efficient data management to help teams build better products through actionable insights.",
+    "image": "/assets/project-2.png",
+    "link": "https://feebo.vercel.app"
+  }
+]
