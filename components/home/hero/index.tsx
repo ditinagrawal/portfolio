@@ -1,12 +1,32 @@
 import Image from "next/image";
 
 import { Button, buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
+import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
+import {
+  IconBrandAstro,
+  IconBrandAws,
+  IconBrandCss3,
+  IconBrandHtml5,
+  IconBrandJavascript,
+  IconBrandMongodb,
+  IconBrandMysql,
+  IconBrandNextjs,
+  IconBrandNodejs,
+  IconBrandPrisma,
+  IconBrandReact,
+  IconBrandTailwind,
+  IconBrandTypescript,
+  IconBrandVercel,
+} from "@tabler/icons-react";
+import Link from "next/link";
 
 export const Hero = () => {
   return (
-    <section className="px-4 py-12 sm:p-10 md:p-20" id="hero">
+    <section
+      className="border-b border-dashed border-neutral-400 px-4 py-12 sm:p-10 md:p-20"
+      id="hero"
+    >
       <div className="mx-auto flex max-w-3xl flex-col justify-center gap-6">
         <Image
           src="/avatar.jpg"
@@ -47,33 +67,22 @@ export const Hero = () => {
             Available for Work
           </Button>
         </div>
-      </div>
-      <div className="w-full py-0 pt-20">
-        <div className="flex items-center justify-center gap-16">
-          <Image
-            src="/assets/hero-1.png"
-            alt="hero-1"
-            width={300}
-            height={300}
-            priority
-            className="blur-[1px] transition-all duration-300 hover:scale-110 hover:blur-none"
-          />
-          <Image
-            src="/assets/hero-2.png"
-            alt="hero-2"
-            width={390}
-            height={390}
-            priority
-            className="scale-115 blur-[1px] transition-all duration-300 hover:scale-125 hover:blur-none"
-          />
-          <Image
-            src="/assets/hero-3.png"
-            alt="hero-3"
-            width={300}
-            height={300}
-            priority
-            className="blur-[1px] transition-all duration-300 hover:scale-110 hover:blur-none"
-          />
+        <div className="mt-6 flex flex-col gap-6 py-6">
+          <h2 className="text-xl font-medium text-neutral-900">Tech Stack</h2>
+          <Slider speedOnHover={20} gap={24}>
+            <IconBrandJavascript className="size-12 text-neutral-800" />
+            <IconBrandReact className="size-12 text-neutral-800" />
+            <IconBrandTypescript className="size-12 text-neutral-800" />
+            <IconBrandNextjs className="size-12 text-neutral-800" />
+            <IconBrandAstro className="size-12 text-neutral-800" />
+            <IconBrandTailwind className="size-12 text-neutral-800" />
+            <IconBrandNodejs className="size-12 text-neutral-800" />
+            <IconBrandMongodb className="size-12 text-neutral-800" />
+            <IconBrandMysql className="size-12 text-neutral-800" />
+            <IconBrandPrisma className="size-12 text-neutral-800" />
+            <IconBrandAws className="size-12 text-neutral-800" />
+            <IconBrandVercel className="size-12 text-neutral-800" />
+          </Slider>
         </div>
       </div>
     </section>

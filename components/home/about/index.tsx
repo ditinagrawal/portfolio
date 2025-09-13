@@ -1,7 +1,7 @@
 export const About = () => {
   return (
     <section
-      className="border-b border-dashed border-neutral-400 px-4 pb-20 sm:px-10 md:px-20"
+      className="border-b border-dashed border-neutral-400 px-4 py-20 sm:px-10 md:px-20"
       id="about"
     >
       <div className="mx-auto flex max-w-3xl flex-col gap-4">
