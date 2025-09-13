@@ -1,11 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useTransition } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import Image from "next/image";
 
 export const ContactForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -19,23 +19,14 @@ export const ContactForm = () => {
     if (!fullName || !email || !message) return;
     try {
       startTransition(async () => {
-        const response = await fetch("https://ping.ditin.in/api/events", {
+        const response = await fetch("/api/send-msg", {
           method: "POST",
-          headers: {
-            Authorization: `Bearer ${process.env.PING_API_KEY}`,
-          },
-          body: JSON.stringify({
-            category: "new-message",
-            fields: {
-              from: "PORTFOLIO",
-              name: fullName,
-              email: email,
-              message: message,
-            },
-          }),
+          body: JSON.stringify({ name: fullName, email, message }),
         });
-        console.log(response);
-        setIsSuccess(true);
+        const data = await response.json();
+        if (data.success) {
+          setIsSuccess(true);
+        }
       });
     } catch (error) {
       console.error(error);
