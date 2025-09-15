@@ -13,6 +13,7 @@ import {
   IconCalendarEventFilled,
   IconDiamondFilled,
   IconHomeFilled,
+  IconLibraryFilled,
   IconMailFilled,
   IconUserFilled,
 } from "@tabler/icons-react";
@@ -39,6 +40,9 @@ export const Navbar = () => {
               </WithTooltip>
               <WithTooltip tooltip="Services" href="#services">
                 <IconDiamondFilled className="size-6 text-neutral-700" />
+              </WithTooltip>
+              <WithTooltip tooltip="Blog" href="/blog">
+                <IconLibraryFilled className="size-6 text-neutral-700" />
               </WithTooltip>
             </div>
             <Separator

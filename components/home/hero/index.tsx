@@ -6,8 +6,6 @@ import { cn } from "@/lib/utils";
 import {
   IconBrandAstro,
   IconBrandAws,
-  IconBrandCss3,
-  IconBrandHtml5,
   IconBrandJavascript,
   IconBrandMongodb,
   IconBrandMysql,
