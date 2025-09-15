@@ -1,0 +1,262 @@
+---
+title: "Setup TRPC in Next.js App Router"
+description: "In this guide, we'll walk through the process of setting up TRPC in a Next.js App Router to make our API's fully typesafe."
+date: "2025-09-15"
+tags: ["Next.js", "TRPC", "TypeScript"]
+featured: true
+readTime: "5 min read"
+author: "ditin"
+thumbnail: "/thumbnails/nextjs-trpc.webp"
+---
+
+When building a full-stack TypeScript application with Next.js App Router, integrating tRPC gives you a type-safe API layer without having to write REST or GraphQL boilerplate. In this guide, we'll walk through setting up tRPC with a clean folder structure and usage example.
+
+## Project Structure
+
+```
+src/
+├── app/
+│   └── api/
+│       └── trpc/
+│           └── [trpc]/
+│               └── route.ts        # API handler (Next.js API <-> tRPC)
+├── server/
+│   └── trpc/
+│       ├── routers/
+│       │   ├── _app.ts            # Root router combining all routers
+│       │   └── post.ts            # Example router
+│       ├── context.ts             # tRPC context (db, auth, etc.)
+│       └── trpc.ts                # tRPC init & middleware
+├── lib/
+│    └── trpc.ts                    # tRPC client setup for React
+└── components/
+    └── trpc-provider.tsx        # tRPC provider for React
+```
+
+## Setup
+
+### 1. Installing Dependencies
+
+We need to install the following dependencies:
+
+```bash
+bun add @trpc/server @trpc/client @trpc/react-query @tanstack/react-query zod
+```
+
+### 2. Creating the tRPC Server
+
+Create a new file called `server/trpc/trpc.ts` and add the following code:
+
+```tsx
+// src/server/trpc/trpc.ts
+import { initTRPC, TRPCError } from "@trpc/server";
+import type { Context } from "./context";
+
+const t = initTRPC.context<Context>().create();
+
+export const router = t.router;
+export const procedure = t.procedure;
+
+// Middleware for auth-protected procedures
+export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
+  if (!ctx.session) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+  return next({
+    ctx: { ...ctx, user: ctx.session.user },
+  });
+});
+```
+
+### 3. Creating the tRPC Context
+
+Create a new file called `server/trpc/context.ts` and add the following code:
+
+```tsx
+// src/server/trpc/context.ts
+import { db } from "@/lib/db";
+import { auth } from "@/auth";
+import { headers } from "next/headers";
+
+export async function createContext() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  return { db, session }; // replace with your auth later & db
+}
+
+export type Context = Awaited<ReturnType<typeof createContext>>;
+```
+
+### 4. Creating the tRPC Router
+
+Create a new file called `server/trpc/routers/post.ts` and add the following code:
+
+```tsx
+// src/server/trpc/routers/post.ts
+import { router, procedure, protectedProcedure } from "../trpc";
+import { z } from "zod";
+
+export const postRouter = router({
+  getAll: procedure.query(async ({ ctx }) => {
+    return ctx.prisma.post.findMany();
+  }),
+
+  add: protectedProcedure
+    .input(z.object({ title: z.string().min(1) }))
+    .mutation(async ({ ctx, input }) => {
+      return ctx.prisma.post.create({
+        data: { title: input.title, userId: ctx.user.id },
+      });
+    }),
+});
+```
+
+now we need to create a new file called `server/trpc/routers/_app.ts` to combine all the routers:
+
+```tsx
+// src/server/trpc/routers/_app.ts
+import { router } from "../trpc";
+import { postRouter } from "./post";
+
+export const appRouter = router({
+  post: postRouter,
+});
+
+export type AppRouter = typeof appRouter;
+```
+
+### 5. Creating the tRPC Client
+
+Create a new file called `lib/trpc.ts` and add the following code:
+
+```tsx
+// src/lib/trpc.ts
+"use client";
+
+import { createTRPCReact } from "@trpc/react-query";
+import type { AppRouter } from "@/server/trpc/routers/_app";
+
+export const trpc = createTRPCReact<AppRouter>();
+```
+
+### 6. Creating the tRPC Provider
+
+Create a new file called `components/trpc-provider.tsx` and add the following code:
+
+```tsx
+// src/components/trpc-provider.tsx
+"use client";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { trpc } from "@/lib/trpc";
+import { httpBatchLink } from "@trpc/client";
+import { useState } from "react";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [queryClient] = useState(() => new QueryClient());
+  const [trpcClient] = useState(() =>
+    trpc.createClient({
+      links: [httpBatchLink({ url: "http://localhost:3000/api/trpc" })],
+    }),
+  );
+
+  return (
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <html lang="en">
+          <body>{children}</body>
+        </html>
+      </QueryClientProvider>
+    </trpc.Provider>
+  );
+}
+```
+
+### 7. Creating the API Handler
+
+Create a new file called `app/api/trpc/[trpc]/route.ts` and add the following code:
+
+```tsx
+// src/app/api/trpc/[trpc]/route.ts
+import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { appRouter } from "@/server/trpc/routers/_app";
+import { createContext } from "@/server/trpc/context";
+
+const handler = (req: Request) =>
+  fetchRequestHandler({
+    endpoint: "/api/trpc",
+    req,
+    router: appRouter,
+    createContext,
+  });
+
+export { handler as GET, handler as POST };
+```
+
+### 8. Usage Example
+
+```tsx
+// src/app/page.tsx
+"use client";
+
+import { trpc } from "@/lib/trpc";
+
+export default function Home() {
+  const posts = trpc.post.getAll.useQuery();
+  const addPost = trpc.post.add.useMutation({
+    onSuccess: () => posts.refetch(),
+  });
+
+  return (
+    <div className="p-6">
+      <h1 className="text-xl font-bold">Posts</h1>
+      <ul>
+        {posts.data?.map((p) => (
+          <li key={p.id}>{p.title}</li>
+        ))}
+      </ul>
+      <button
+        onClick={() => addPost.mutate({ title: "New Post" })}
+        className="mt-2 rounded bg-blue-500 px-3 py-1 text-white"
+      >
+        Add Post
+      </button>
+    </div>
+  );
+}
+```
+
+## Conclusion
+
+**You now have a full tRPC + Next.js App Router setup:**
+
+- Clean folder structure
+- Context-aware procedures
+- Protected routes via protectedProcedure
+- Type-safe client hooks for queries & mutations
+
+This setup is production-ready and can be extended with Prisma, authentication, or role-based middleware as your app grows.
+
+---
+
+## 📚 Source Code
+
+Looking for the full implementation? I've created a complete working example that you can explore and run locally:
+
+**GitHub Repository:** [ditinagrawal/trpc](https://github.com/ditinagrawal/trpc)
+
+### What you'll find:
+
+- ✅ Complete Next.js 15 App Router setup
+- ✅ Fully configured tRPC with TypeScript
+
+> 💡 **Tip:** Clone the repository and follow along with this tutorial, or use it as a reference implementation for your own projects.
+
+---
+
+If you have any questions or feedback, please feel free to reach out to me on [X(Twitter)](https://x.com/ditinagrawal) or [LinkedIn](https://linkedin.com/in/ditinagrawal).
