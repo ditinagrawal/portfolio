@@ -168,9 +168,7 @@ export default function RootLayout({
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <html lang="en">
-          <body>{children}</body>
-        </html>
+          {children}
       </QueryClientProvider>
     </trpc.Provider>
   );
