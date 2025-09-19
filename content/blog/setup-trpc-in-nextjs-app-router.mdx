@@ -167,10 +167,27 @@ export default function RootLayout({
 
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}>
-          {children}
-      </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </trpc.Provider>
+  );
+}
+```
+
+Make sure you add the trpc-provider in your Root layout:
+
+```tsx
+// src/app/layout.tsx
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={`${recoleta.className} antialiased`}>
+        <TrpcProvider>{children}</TrpcProvider>
+      </body>
+    </html>
   );
 }
 ```
