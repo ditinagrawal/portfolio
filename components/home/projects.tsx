@@ -27,7 +27,7 @@ export const Projects = () => {
               className="scale-125"
             />
           </div>
-          <div className="border-t border-zinc-200 p-2">
+          <div className="border-t border-zinc-200 p-4">
             <h2 className="text-lg font-medium text-zinc-800">Private Chat</h2>
             <p className="text-sm text-zinc-600">
               A private, self-destructing chat room.
@@ -76,7 +76,7 @@ export const Projects = () => {
               className="scale-125"
             />
           </div>
-          <div className="border-t border-zinc-200 p-2 blur-xs">
+          <div className="border-t border-zinc-200 p-4 blur-xs">
             <h2 className="text-lg font-medium text-zinc-800">Private Chat</h2>
             <p className="text-sm text-zinc-600">
               A private, self-destructing chat room.
