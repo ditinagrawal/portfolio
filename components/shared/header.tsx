@@ -46,7 +46,7 @@ export const Header = () => {
           <div>
             <Link
               href="mailto:ditin.dev@gmail.com"
-              className="flex cursor-pointer items-center gap-x-1 rounded-md bg-zinc-200 px-2.5 py-1 text-sm font-medium text-zinc-800 transition-colors duration-300 hover:bg-zinc-300"
+              className="flex cursor-pointer items-center gap-x-1 rounded-md bg-zinc-200/60 px-2.5 py-1 text-sm font-medium text-zinc-700 transition-colors duration-300 hover:bg-zinc-200"
             >
               <IconMail className="size-4" />
               E-Mail
