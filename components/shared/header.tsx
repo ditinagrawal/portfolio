@@ -9,7 +9,7 @@ export const Header = () => {
   return (
     <header className="fixed top-0 z-99999 h-16 w-full border-b border-zinc-200 bg-zinc-50">
       <Container className="flex h-full items-center">
-        <nav className="flex w-full items-center justify-between">
+        <nav className="flex w-full items-end justify-between">
           <div className="flex items-end gap-x-6">
             <Link href="/">
               <Image
@@ -18,6 +18,8 @@ export const Header = () => {
                 width={1024}
                 height={1024}
                 className="size-10 rounded-full bg-zinc-100"
+                priority
+                draggable={false}
               />
             </Link>
             <div className="flex items-center gap-x-4 text-sm font-medium text-zinc-500">
