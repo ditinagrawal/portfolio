@@ -2,7 +2,12 @@ import { JetBrains_Mono } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 
-import { IconBrandGithub, IconChecks, IconWorld } from "@tabler/icons-react";
+import {
+  IconBrandGithub,
+  IconChecks,
+  IconMedal,
+  IconWorld,
+} from "@tabler/icons-react";
 
 import {
   AWSIcon,
@@ -26,10 +31,10 @@ export const FeaturedProject = () => {
       <h4
         className={cn(
           jetBrainsMono.className,
-          "flex items-center gap-x-3 text-sm font-medium text-zinc-600",
+          "flex items-center gap-x-2 text-sm font-medium text-zinc-600",
         )}
       >
-        Featured Project
+        <IconMedal className="mt-0.5 size-4" /> Featured Project
         <svg
           className="w-8 -scale-x-100 rotate-12 fill-zinc-600"
           viewBox="0 0 219 41"
