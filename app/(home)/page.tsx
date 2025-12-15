@@ -1,3 +1,4 @@
+import { About } from "@/components/home/about";
 import { FeaturedProject } from "@/components/home/featured-project";
 import { Hero } from "@/components/home/hero";
 import { Projects } from "@/components/home/projects";
@@ -9,6 +10,7 @@ export default function HomePage() {
       <Hero />
       <FeaturedProject />
       <Projects />
+      <About />
     </Container>
   );
 }
