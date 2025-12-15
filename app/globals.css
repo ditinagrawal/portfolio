@@ -1,1 +1,7 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+.prose pre {
+  background-color: transparent;
+  padding: 0;
+}
