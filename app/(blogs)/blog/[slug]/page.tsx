@@ -23,9 +23,7 @@ export default async function SlugPage({
   });
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="prose-neutral prose dark:prose-invert mx-auto max-w-2xl">
-        {content}
-      </div>
+      <div className="prose-neutral prose dark:prose-invert">{content}</div>
     </Suspense>
   );
 }
