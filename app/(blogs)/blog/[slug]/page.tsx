@@ -16,7 +16,7 @@ export default async function SlugPage({
   const components = useMDXComponents({});
   const filePath = path.join(process.cwd(), "content", "blogs", `${slug}.mdx`);
   const fileContent = await fs.readFile(filePath, "utf8");
-  const { content, frontmatter } = await compileMDX<{ title: string }>({
+  const { content, frontmatter } = await compileMDX<FrontMatter>({
     source: fileContent,
     options: { parseFrontmatter: true },
     components,
