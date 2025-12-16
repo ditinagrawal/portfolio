@@ -13,13 +13,21 @@ export default async function BlogPage() {
   const filesWithoutExtension = files.map((file) => file.replace(".mdx", ""));
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div>
-        {filesWithoutExtension.map((file) => (
-          <Link key={file} href={`/blog/${file}`}>
-            {file}
-          </Link>
-        ))}
-      </div>
+      <section className="space-y-10 py-20">
+        <div className="space-y-1">
+          <h2 className="text-2xl font-bold">Blogs 📚</h2>
+          <p className="text-sm text-zinc-500">
+            I love to share my knowledge with others.
+          </p>
+        </div>
+        <div>
+          {filesWithoutExtension.map((file) => (
+            <Link key={file} href={`/blog/${file}`}>
+              {file}
+            </Link>
+          ))}
+        </div>
+      </section>
     </Suspense>
   );
 }

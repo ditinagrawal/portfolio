@@ -2,7 +2,7 @@ import { Footer } from "@/components/shared/footer";
 import { Header } from "@/components/shared/header";
 import { Container } from "@/components/ui/container";
 
-export default function WorkLayout({
+export default function ProjectsLayout({
   children,
 }: {
   children: React.ReactNode;

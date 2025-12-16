@@ -113,7 +113,7 @@ export const Projects = () => {
         </div>
       </div>
       <Link
-        href="/work"
+        href="/projects"
         className="mt-6 flex items-center justify-center text-sm text-zinc-800"
       >
         View All &rarr;

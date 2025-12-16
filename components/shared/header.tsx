@@ -24,10 +24,10 @@ export const Header = () => {
             </Link>
             <div className="flex items-center gap-x-4 text-sm font-medium text-zinc-500">
               <Link
-                href="/work"
+                href="/projects"
                 className="transition-colors duration-300 hover:text-zinc-800"
               >
-                Work
+                Projects
               </Link>
               <Link
                 href="/lab"
