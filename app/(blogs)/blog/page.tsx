@@ -20,10 +20,15 @@ export default async function BlogPage() {
             I love to share my knowledge with others.
           </p>
         </div>
-        <div>
-          {filesWithoutExtension.map((file) => (
-            <Link key={file} href={`/blog/${file}`}>
-              {file}
+        <div className="space-y-1">
+          {filesWithoutExtension.map((title) => (
+            <Link key={title} href={`/blog/${title}`}>
+              <div className="rounded-md p-4 text-zinc-800 underline underline-offset-2 transition-colors duration-300 hover:bg-zinc-100">
+                {(() => {
+                  const x = title.replace(/-/g, " ");
+                  return x.charAt(0).toUpperCase() + x.slice(1);
+                })()}
+              </div>
             </Link>
           ))}
         </div>
