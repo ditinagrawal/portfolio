@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 
 import { ViewTransitions } from "next-view-transitions";
 
+import { ReactLenis } from "@/lib/lenis";
 import "./globals.css";
 
 const inter = Inter({
@@ -27,7 +28,9 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en">
-        <body className={`${inter.className} antialiased`}>{children}</body>
+        <ReactLenis root>
+          <body className={`${inter.className} antialiased`}>{children}</body>
+        </ReactLenis>
       </html>
     </ViewTransitions>
   );
