@@ -4,6 +4,7 @@ import { FeaturedProject } from "@/components/home/featured-project";
 import { Hero } from "@/components/home/hero";
 import { Projects } from "@/components/home/projects";
 import { TechStack } from "@/components/home/tech-stack";
+import { Contributions } from "@/components/shared/contributions";
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <About />
       <Experience />
       <TechStack />
+      <Contributions />
     </div>
   );
 }
