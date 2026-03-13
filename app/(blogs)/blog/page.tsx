@@ -1,10 +1,11 @@
-import { promises as fs } from "node:fs";
-import path from "node:path";
+import { Suspense } from "react";
 
 import { compileMDX } from "next-mdx-remote/rsc";
 import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
+
+import { promises as fs } from "node:fs";
+import path from "node:path";
 
 type BlogPost = {
   slug: string;
@@ -28,13 +29,13 @@ async function getBlogPosts(): Promise<BlogPost[]> {
         slug: file.replace(".mdx", ""),
         frontmatter,
       };
-    }),
+    })
   );
 
   return posts.sort(
     (a, b) =>
       new Date(b.frontmatter.date).getTime() -
-      new Date(a.frontmatter.date).getTime(),
+      new Date(a.frontmatter.date).getTime()
   );
 }
 

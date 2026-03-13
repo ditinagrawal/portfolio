@@ -1,13 +1,12 @@
-import { promises as fs } from "node:fs";
-
-import path from "node:path";
-
-import { compileMDX } from "next-mdx-remote/rsc";
-import { JetBrains_Mono } from "next/font/google";
 import { Suspense } from "react";
 
-import { IconArrowLeft } from "@tabler/icons-react";
+import { compileMDX } from "next-mdx-remote/rsc";
 import { Link } from "next-view-transitions";
+import { JetBrains_Mono } from "next/font/google";
+
+import { IconArrowLeft } from "@tabler/icons-react";
+import { promises as fs } from "node:fs";
+import path from "node:path";
 
 import { cn } from "@/lib/utils";
 import { useMDXComponents } from "@/mdx-components";

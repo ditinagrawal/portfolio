@@ -1,7 +1,9 @@
-import { cn } from "@/lib/utils";
-import { IconArrowUpRight, IconBrandX } from "@tabler/icons-react";
 import { Link } from "next-view-transitions";
 import { Caveat } from "next/font/google";
+
+import { IconArrowUpRight, IconBrandX } from "@tabler/icons-react";
+
+import { cn } from "@/lib/utils";
 
 const caveat = Caveat({
   subsets: ["latin"],

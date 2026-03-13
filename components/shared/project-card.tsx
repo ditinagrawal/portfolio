@@ -1,7 +1,7 @@
+import { Link } from "next-view-transitions";
 import Image from "next/image";
 
 import { IconBrandGithub, IconChecks, IconWorld } from "@tabler/icons-react";
-import { Link } from "next-view-transitions";
 
 import {
   BunIcon,

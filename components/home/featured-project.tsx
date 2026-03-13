@@ -31,7 +31,7 @@ export const FeaturedProject = () => {
       <h4
         className={cn(
           jetBrainsMono.className,
-          "flex items-center gap-x-2 text-sm font-medium text-zinc-600",
+          "flex items-center gap-x-2 text-sm font-medium text-zinc-600"
         )}
       >
         <IconMedal className="mt-0.5 size-4" /> Featured Project

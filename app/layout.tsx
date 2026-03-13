@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import { ViewTransitions } from "next-view-transitions";
 import { Inter } from "next/font/google";
 
-import { ViewTransitions } from "next-view-transitions";
-
 import { ReactLenis } from "@/lib/lenis";
+
 import "./globals.css";
 
 const inter = Inter({

@@ -2,7 +2,6 @@ import { JetBrains_Mono } from "next/font/google";
 
 import { IconTools } from "@tabler/icons-react";
 
-import { cn } from "@/lib/utils";
 import {
   AWSIcon,
   BunIcon,
@@ -16,6 +15,7 @@ import {
   TypeScriptIcon,
   VercelIcon,
 } from "@/components/shared/icons";
+import { cn } from "@/lib/utils";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -29,7 +29,7 @@ export const TechStack = () => {
         <h4
           className={cn(
             jetBrainsMono.className,
-            "flex items-center gap-x-2 text-sm font-medium text-zinc-600",
+            "flex items-center gap-x-2 text-sm font-medium text-zinc-600"
           )}
         >
           <IconTools className="mt-0.5 size-4" /> My Cool Stack

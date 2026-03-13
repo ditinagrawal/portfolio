@@ -1,5 +1,7 @@
 import { JetBrains_Mono } from "next/font/google";
 
+import { IconBriefcase2 } from "@tabler/icons-react";
+
 import {
   AWSIcon,
   CSSIcon,
@@ -15,7 +17,6 @@ import {
   TypeScriptIcon,
 } from "@/components/shared/icons";
 import { cn } from "@/lib/utils";
-import { IconBriefcase2 } from "@tabler/icons-react";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -28,7 +29,7 @@ export const Experience = () => {
       <h4
         className={cn(
           jetBrainsMono.className,
-          "flex items-center gap-x-2 text-sm font-medium text-zinc-600",
+          "flex items-center gap-x-2 text-sm font-medium text-zinc-600"
         )}
       >
         <IconBriefcase2 className="mt-0.5 size-4" /> Experience
