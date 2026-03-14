@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ViewTransitions } from "next-view-transitions";
 import { Inter } from "next/font/google";
 
+import { BackToTop } from "@/components/shared/back-to-top";
 import { ReactLenis } from "@/lib/lenis";
 
 import "./globals.css";
@@ -29,7 +30,10 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en">
         <ReactLenis root>
-          <body className={`${inter.className} antialiased`}>{children}</body>
+          <body className={`${inter.className} antialiased`}>
+            {children}
+            <BackToTop />
+          </body>
         </ReactLenis>
       </html>
     </ViewTransitions>
