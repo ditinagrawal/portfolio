@@ -27,7 +27,7 @@ async function getContributions() {
   );
 
   const response = await fetch(url, {
-    next: { revalidate: 60 * 60 * 24 },
+    next: { revalidate: 60 * 60 },
   });
 
   if (!response.ok) {
