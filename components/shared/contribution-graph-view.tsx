@@ -24,7 +24,7 @@ export function ContributionGraphView({
   total: number;
 }) {
   return (
-    <ContributionGraph data={contributions} totalCount={total}>
+    <ContributionGraph data={contributions} totalCount={total} blockSize={8}>
       <ContributionGraphCalendar>
         {({ activity, dayIndex, weekIndex }) => (
           <ContributionGraphBlock
