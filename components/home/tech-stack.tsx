@@ -1,6 +1,9 @@
+"use client";
+
 import { JetBrains_Mono } from "next/font/google";
 
 import { IconTools } from "@tabler/icons-react";
+import { motion } from "motion/react";
 
 import {
   AWSIcon,
@@ -22,30 +25,48 @@ const jetBrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600", "700"],
 });
 
+const icons = [
+  ReactIcon,
+  NextjsIcon,
+  TypeScriptIcon,
+  TailwindCSSIcon,
+  ShadcnUI,
+  PostgreSQLIcon,
+  PrismaIcon,
+  AWSIcon,
+  ReactQueryIcon,
+  BunIcon,
+  VercelIcon,
+];
+
 export const TechStack = () => {
   return (
     <section className="py-28">
       <div className="space-y-8">
-        <h4
+        <motion.h4
           className={cn(
             jetBrainsMono.className,
             "flex items-center gap-x-2 text-sm font-medium text-zinc-600"
           )}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <IconTools className="mt-0.5 size-4" /> My Cool Stack
-        </h4>
+        </motion.h4>
         <div className="flex flex-wrap gap-6">
-          <ReactIcon className="size-8" />
-          <NextjsIcon className="size-8" />
-          <TypeScriptIcon className="size-8" />
-          <TailwindCSSIcon className="size-8" />
-          <ShadcnUI className="size-8" />
-          <PostgreSQLIcon className="size-8" />
-          <PrismaIcon className="size-8" />
-          <AWSIcon className="size-8" />
-          <ReactQueryIcon className="size-8" />
-          <BunIcon className="size-8" />
-          <VercelIcon className="size-8" />
+          {icons.map((Icon, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.3, ease: "easeOut", delay: i * 0.04 }}
+            >
+              <Icon className="size-8" />
+            </motion.span>
+          ))}
         </div>
       </div>
     </section>

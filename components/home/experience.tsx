@@ -1,6 +1,9 @@
+"use client";
+
 import { JetBrains_Mono } from "next/font/google";
 
 import { IconBriefcase2 } from "@tabler/icons-react";
+import { motion } from "motion/react";
 
 import {
   AWSIcon,
@@ -23,19 +26,27 @@ const jetBrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600", "700"],
 });
 
+const itemVariants = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-40px" },
+  transition: { duration: 0.45, ease: "easeOut", delay },
+});
+
 export const Experience = () => {
   return (
     <section className="space-y-6">
-      <h4
+      <motion.h4
         className={cn(
           jetBrainsMono.className,
           "flex items-center gap-x-2 text-sm font-medium text-zinc-600"
         )}
+        {...itemVariants(0)}
       >
         <IconBriefcase2 className="mt-0.5 size-4" /> Experience
-      </h4>
+      </motion.h4>
       <div className="space-y-12">
-        <div>
+        <motion.div {...itemVariants(0.05)}>
           <h3 className="text-xl font-semibold text-zinc-800">Bytework</h3>
           <div className="mt-2.5">
             <h4 className="font-medium text-zinc-700">Full Stack Developer</h4>
@@ -55,8 +66,8 @@ export const Experience = () => {
             <HTMLIcon /> <CSSIcon /> <JavaScriptIcon /> <PhpIcon />
             <LaravelIcon /> <MySQLIcon />
           </div>
-        </div>
-        <div>
+        </motion.div>
+        <motion.div {...itemVariants(0.1)}>
           <h3 className="text-xl font-semibold text-zinc-800">Dreamlegal</h3>
           <div className="mt-2.5">
             <h4 className="font-medium text-zinc-700">Next.js Developer</h4>
@@ -76,7 +87,7 @@ export const Experience = () => {
             <NextjsIcon /> <TypeScriptIcon /> <TailwindCSSIcon />
             <PostgreSQLIcon /> <PrismaIcon /> <AWSIcon />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,7 +1,10 @@
+"use client";
+
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 
 import { IconBrandGithub, IconChecks, IconWorld } from "@tabler/icons-react";
+import { motion } from "motion/react";
 
 import {
   BunIcon,
@@ -12,12 +15,22 @@ import {
   UpstashIcon,
 } from "@/components/shared/icons";
 
+const cardVariants = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-40px" },
+};
+
 export const Projects = () => {
   return (
     <section className="pt-4">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {/* Project 1 */}
-        <div className="overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50">
+        <motion.div
+          className="overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50"
+          {...cardVariants}
+          transition={{ duration: 0.45, ease: "easeOut" }}
+        >
           <div className="overflow-hidden">
             <Image
               src="/projects/private-chat.png"
@@ -61,9 +74,13 @@ export const Projects = () => {
               </Link>
             </div>
           </div>
-        </div>
+        </motion.div>
         {/* Project 2 */}
-        <div className="relative overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50">
+        <motion.div
+          className="relative overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50"
+          {...cardVariants}
+          transition={{ duration: 0.45, ease: "easeOut", delay: 0.1 }}
+        >
           <div className="absolute top-2 left-3 z-999 rounded-lg bg-amber-500/80 px-2.5 py-0.5 text-sm font-medium text-zinc-900">
             Building... 🚧
           </div>
@@ -110,14 +127,21 @@ export const Projects = () => {
               </Link>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-      <Link
-        href="/projects"
-        className="mt-6 flex items-center justify-center text-sm text-zinc-800"
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 }}
       >
-        View All &rarr;
-      </Link>
+        <Link
+          href="/projects"
+          className="mt-6 flex items-center justify-center text-sm text-zinc-800"
+        >
+          View All &rarr;
+        </Link>
+      </motion.div>
     </section>
   );
 };

@@ -1,7 +1,10 @@
+"use client";
+
 import { Link } from "next-view-transitions";
 import { Caveat } from "next/font/google";
 
 import { IconArrowUpRight, IconBrandX } from "@tabler/icons-react";
+import { motion } from "motion/react";
 
 import { cn } from "@/lib/utils";
 
@@ -13,7 +16,13 @@ const caveat = Caveat({
 export const About = () => {
   return (
     <section className="py-32">
-      <div className="rounded-2xl bg-zinc-50 p-8">
+      <motion.div
+        className="rounded-2xl bg-zinc-50 p-8"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
         <p className="leading-relaxed">
           <span className={cn(caveat.className, "text-3xl font-medium")}>
             Hey 👋🏻
@@ -46,7 +55,7 @@ export const About = () => {
             <IconBrandX className="inline-block" />
           </Link>
         </p>
-      </div>
+      </motion.div>
     </section>
   );
 };

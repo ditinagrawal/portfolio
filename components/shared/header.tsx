@@ -1,13 +1,21 @@
+"use client";
+
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 
 import { IconMail } from "@tabler/icons-react";
+import { motion } from "motion/react";
 
 import { Container } from "@/components/ui/container";
 
 export const Header = () => {
   return (
-    <header className="fixed top-0 z-99999 h-16 w-full border-b border-zinc-200 bg-zinc-50">
+    <motion.header
+      className="fixed top-0 z-99999 h-16 w-full border-b border-zinc-200 bg-zinc-50"
+      initial={{ opacity: 0, y: -12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+    >
       <Container className="flex h-full items-center">
         <nav className="flex w-full items-end justify-between">
           <div className="flex items-end gap-x-6">
@@ -54,6 +62,6 @@ export const Header = () => {
           </div>
         </nav>
       </Container>
-    </header>
+    </motion.header>
   );
 };

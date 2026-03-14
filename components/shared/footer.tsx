@@ -1,10 +1,20 @@
+"use client";
+
 import Link from "next/link";
+
+import { motion } from "motion/react";
 
 import { Container } from "@/components/ui/container";
 
 export const Footer = () => {
   return (
-    <footer className="border-t border-zinc-200 bg-zinc-50 py-10">
+    <motion.footer
+      className="border-t border-zinc-200 bg-zinc-50 py-10"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
       <Container>
         <div className="flex justify-center gap-6 text-sm text-zinc-600">
           <Link href="https://x.com/ditincodes" target="_blank">
@@ -23,6 +33,6 @@ export const Footer = () => {
           <br />© {new Date().getFullYear()}. All rights reserved.
         </div>
       </Container>
-    </footer>
+    </motion.footer>
   );
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import { JetBrains_Mono } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +10,7 @@ import {
   IconMedal,
   IconWorld,
 } from "@tabler/icons-react";
+import { motion } from "motion/react";
 
 import {
   AWSIcon,
@@ -25,14 +28,22 @@ const jetBrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600", "700"],
 });
 
+const inView = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-40px" },
+  transition: { duration: 0.45, ease: "easeOut" },
+};
+
 export const FeaturedProject = () => {
   return (
     <section className="space-y-4">
-      <h4
+      <motion.h4
         className={cn(
           jetBrainsMono.className,
           "flex items-center gap-x-2 text-sm font-medium text-zinc-600"
         )}
+        {...inView}
       >
         <IconMedal className="mt-0.5 size-4" /> Featured Project
         <svg
@@ -50,8 +61,11 @@ export const FeaturedProject = () => {
             </clipPath>
           </defs>
         </svg>
-      </h4>
-      <div>
+      </motion.h4>
+      <motion.div
+        {...inView}
+        transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+      >
         <div className="grid grid-cols-1 gap-y-4 overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 md:grid-cols-2 md:gap-y-0">
           <div className="p-4">
             <h2 className="text-lg font-medium text-zinc-800 text-shadow-2xs">
@@ -102,7 +116,7 @@ export const FeaturedProject = () => {
             draggable={false}
           />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
