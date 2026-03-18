@@ -1,14 +1,13 @@
 import type { ComponentType, SVGProps } from "react";
 
 import {
-  AWSIcon,
   BunIcon,
+  CloudflareIcon,
+  ConvexIcon,
   NextjsIcon,
-  PostgreSQLIcon,
-  RedisIcon,
+  ShadcnUI,
   TailwindCSSIcon,
   TypeScriptIcon,
-  UpstashIcon,
 } from "@/components/shared/icons";
 
 export type TechIcon = ComponentType<SVGProps<SVGSVGElement>>;
@@ -36,8 +35,8 @@ export const profile = {
         NextjsIcon,
         TypeScriptIcon,
         TailwindCSSIcon,
-        PostgreSQLIcon,
-        AWSIcon,
+        ConvexIcon,
+        CloudflareIcon,
         BunIcon,
       ],
       highlights: [
@@ -56,8 +55,7 @@ export const profile = {
         NextjsIcon,
         TypeScriptIcon,
         TailwindCSSIcon,
-        RedisIcon,
-        UpstashIcon,
+        ShadcnUI,
         BunIcon,
       ],
       highlights: [
