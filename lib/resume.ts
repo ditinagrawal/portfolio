@@ -28,9 +28,9 @@ export type Project = {
 export const profile = {
   projects: [
     {
-      id: "dropcircle",
-      title: "DropCircle",
-      description: "Simple, private, temporary file sharing.",
+      id: "trustwall",
+      title: "TrustWall",
+      description: "Collect Reviews. Show proof. Build trust. Convert.",
       image: "/projects/trust-wall.png",
       techStack: [
         NextjsIcon,
@@ -41,17 +41,16 @@ export const profile = {
         BunIcon,
       ],
       highlights: [
-        "Implemented Cron Jobs for scheduled cleanup of expired files.",
-        "Deployed on Vercel.",
+        "Collect, organize, and display text and video reviews across your funnel.",
+        "Convert more with authentic proof.",
       ],
-      liveDemo: "https://dropcircle.ditin.in",
-      sourceCode: "https://github.com/ditinagrawal/dropcircle",
+      liveDemo: "https://trust-wall.com",
       featured: true,
     },
     {
-      id: "private-chat",
-      title: "Private Chat",
-      description: "A private, self-destructing chat room.",
+      id: "drawmrr",
+      title: "DrawMrr",
+      description: "Turn MRR Numbers Into Share-Ready Visuals.",
       image: "/projects/drawmrr.png",
       techStack: [
         NextjsIcon,
@@ -61,9 +60,11 @@ export const profile = {
         UpstashIcon,
         BunIcon,
       ],
-      highlights: ["Each chat room expires and self-destructs after 10 minutes."],
-      liveDemo: "https://chat-room.ditin.in",
-      sourceCode: "https://github.com/ditinagrawal/private-chat",
+      highlights: [
+        "Sketch your MRR journey as a hand-drawn progress bar.",
+        "Export to grab a PNG, JPG, animated GIF, or video.",
+      ],
+      liveDemo: "https://drawmrr.com",
     },
   ] satisfies Project[],
 };

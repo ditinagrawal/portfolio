@@ -23,14 +23,14 @@ export const ProjectCard = ({ project }: { project: Project }) => {
         <p className="text-sm text-zinc-600">{project.description}</p>
         <ul className="mt-4 space-y-2 text-sm text-zinc-600">
           <li className="flex items-center gap-2">
-            <IconChecks className="size-4 text-emerald-700" /> Built with{" "}
+            <IconChecks className="size-4 shrink-0 text-emerald-700" /> Built with{" "}
             {project.techStack.map((Icon, i) => (
               <Icon key={i} />
             ))}
           </li>
           {project.highlights.map((highlight, i) => (
             <li key={i} className="flex items-center gap-2">
-              <IconChecks className="size-4 text-emerald-700" /> {highlight}
+              <IconChecks className="size-4 shrink-0 text-emerald-700" /> {highlight}
             </li>
           ))}
         </ul>

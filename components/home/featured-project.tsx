@@ -69,14 +69,14 @@ export const FeaturedProject = () => {
               </p>
               <ul className="mt-6 space-y-2 text-sm text-zinc-600">
                 <li className="flex items-center gap-2">
-                  <IconChecks className="size-4 text-emerald-700" /> Built with{" "}
+                  <IconChecks className="size-4 shrink-0 text-emerald-700" /> Built with{" "}
                   {featuredProject.techStack.map((Icon, i) => (
                     <Icon key={i} />
                   ))}
                 </li>
                 {featuredProject.highlights.map((highlight, i) => (
                   <li key={i} className="flex items-center gap-2">
-                    <IconChecks className="size-4 text-emerald-700" />{" "}
+                    <IconChecks className="size-4 shrink-0 text-emerald-700" />{" "}
                     {highlight}
                   </li>
                 ))}
