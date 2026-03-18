@@ -66,7 +66,7 @@ export const profile = {
       ],
       liveDemo: "https://drawmrr.com",
     },
-  ] satisfies Project[],
+  ] as Project[],
 };
 
 export const featuredProject = profile.projects.find((p) => p.featured)!;
