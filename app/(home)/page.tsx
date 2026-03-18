@@ -11,9 +11,9 @@ export default function HomePage() {
     <div>
       <Hero />
       <FeaturedProject />
+      <Experience />
       <Projects />
       <About />
-      <Experience />
       <TechStack />
       <Contributions />
     </div>

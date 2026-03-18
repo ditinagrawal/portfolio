@@ -12,15 +12,7 @@ import {
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
 
-import {
-  AWSIcon,
-  BunIcon,
-  NextjsIcon,
-  PostgreSQLIcon,
-  TailwindCSSIcon,
-  TypeScriptIcon,
-  VercelIcon,
-} from "@/components/shared/icons";
+import { featuredProject } from "@/lib/resume";
 import { cn } from "@/lib/utils";
 
 const jetBrainsMono = JetBrains_Mono({
@@ -66,55 +58,62 @@ export const FeaturedProject = () => {
         {...inView}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
       >
-        <div className="grid grid-cols-1 gap-y-4 overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 md:grid-cols-2 md:gap-y-0">
-          <div className="p-4">
-            <h2 className="text-lg font-medium text-zinc-800 text-shadow-2xs">
-              DropCircle
-            </h2>
-            <p className="text-sm text-zinc-600">
-              Simple, private, temporary file sharing.
-            </p>
-            <ul className="mt-6 space-y-2 text-sm text-zinc-600">
-              <li className="flex items-center gap-2">
-                <IconChecks className="size-4 text-emerald-700" /> Built with{" "}
-                <NextjsIcon /> <TypeScriptIcon /> <TailwindCSSIcon />{" "}
-                <PostgreSQLIcon /> <AWSIcon /> <BunIcon />
-              </li>
-              <li className="flex items-center gap-2">
-                <IconChecks className="size-4 text-emerald-700" /> Implemented
-                Cron Jobs for scheduled <br /> cleanup of expired files.
-              </li>
-              <li className="flex items-center gap-2">
-                <IconChecks className="size-4 text-emerald-700" />
-                Deployed on <VercelIcon /> Vercel.
-              </li>
-            </ul>
+        <div className="grid grid-cols-1 overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 md:grid-cols-2">
+          <div className="flex flex-col justify-between p-5">
+            <div>
+              <h2 className="text-lg font-medium text-zinc-800 text-shadow-2xs">
+                {featuredProject.title}
+              </h2>
+              <p className="text-sm text-zinc-600">
+                {featuredProject.description}
+              </p>
+              <ul className="mt-6 space-y-2 text-sm text-zinc-600">
+                <li className="flex items-center gap-2">
+                  <IconChecks className="size-4 text-emerald-700" /> Built with{" "}
+                  {featuredProject.techStack.map((Icon, i) => (
+                    <Icon key={i} />
+                  ))}
+                </li>
+                {featuredProject.highlights.map((highlight, i) => (
+                  <li key={i} className="flex items-center gap-2">
+                    <IconChecks className="size-4 text-emerald-700" />{" "}
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+            </div>
             <div className="mt-8 flex items-center gap-x-4">
-              <Link
-                href="https://dropcircle.ditin.in"
-                target="_blank"
-                className="flex items-center gap-2 text-sm text-zinc-600 transition-colors duration-300 hover:text-zinc-800"
-              >
-                <IconWorld className="size-5" /> Live Demo
-              </Link>
-              <Link
-                href="https://github.com/ditinagrawal/dropcircle"
-                target="_blank"
-                className="flex items-center gap-2 text-sm text-zinc-600 transition-colors duration-300 hover:text-zinc-800"
-              >
-                <IconBrandGithub className="size-5" /> Source Code
-              </Link>
+              {featuredProject.liveDemo && (
+                <Link
+                  href={featuredProject.liveDemo}
+                  target="_blank"
+                  className="flex items-center gap-2 text-sm text-zinc-600 transition-colors duration-300 hover:text-zinc-800"
+                >
+                  <IconWorld className="size-5" /> Live Demo
+                </Link>
+              )}
+              {featuredProject.sourceCode && (
+                <Link
+                  href={featuredProject.sourceCode}
+                  target="_blank"
+                  className="flex items-center gap-2 text-sm text-zinc-600 transition-colors duration-300 hover:text-zinc-800"
+                >
+                  <IconBrandGithub className="size-5" /> Source Code
+                </Link>
+              )}
             </div>
           </div>
-          <Image
-            src="/projects/dropcircle.png"
-            alt="DropCircle"
-            width={512}
-            height={512}
-            className="scale-105 -rotate-z-2 md:scale-110"
-            priority
-            draggable={false}
-          />
+          <div className="flex items-center overflow-hidden border-t border-zinc-200 bg-white perspective-distant md:border-t-0 md:border-l">
+            <Image
+              src={featuredProject.image}
+              alt={featuredProject.title}
+              width={512}
+              height={300}
+              className="w-full md:scale-150 md:rotate-x-15 md:-rotate-y-10 md:object-contain"
+              priority
+              draggable={false}
+            />
+          </div>
         </div>
       </motion.div>
     </section>

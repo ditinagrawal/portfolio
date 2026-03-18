@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 
 import { ProjectCard } from "@/components/shared/project-card";
+import { profile } from "@/lib/resume";
 
 export default function ProjectsPage() {
   return (
@@ -19,20 +20,16 @@ export default function ProjectsPage() {
         </p>
       </motion.div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: "easeOut", delay: 0.1 }}
-        >
-          <ProjectCard />
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: "easeOut", delay: 0.18 }}
-        >
-          <ProjectCard />
-        </motion.div>
+        {profile.projects.map((project, i) => (
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: "easeOut", delay: 0.1 + i * 0.08 }}
+          >
+            <ProjectCard project={project} />
+          </motion.div>
+        ))}
       </div>
     </section>
   );

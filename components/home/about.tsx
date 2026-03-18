@@ -15,7 +15,7 @@ const caveat = Caveat({
 
 export const About = () => {
   return (
-    <section className="py-32">
+    <section className="py-28">
       <motion.div
         className="rounded-2xl bg-zinc-50 p-8"
         initial={{ opacity: 0, y: 20 }}

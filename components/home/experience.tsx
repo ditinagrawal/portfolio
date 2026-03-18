@@ -35,7 +35,7 @@ const itemVariants = (delay = 0) => ({
 
 export const Experience = () => {
   return (
-    <section className="space-y-6">
+    <section className="space-y-6 pt-28">
       <motion.h4
         className={cn(
           jetBrainsMono.className,

@@ -41,7 +41,7 @@ const icons = [
 
 export const TechStack = () => {
   return (
-    <section className="py-28">
+    <section className="pb-24">
       <div className="space-y-8">
         <motion.h4
           className={cn(
