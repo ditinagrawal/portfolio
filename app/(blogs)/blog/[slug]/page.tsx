@@ -1,5 +1,3 @@
-import { Suspense } from "react";
-
 import { compileMDX } from "next-mdx-remote/rsc";
 
 import { promises as fs } from "node:fs";
@@ -24,12 +22,10 @@ export default async function SlugPage({
   });
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <BlogDetailWrapper
-        title={frontmatter.title}
-        date={frontmatter.date}
-        content={content}
-      />
-    </Suspense>
+    <BlogDetailWrapper
+      title={frontmatter.title}
+      date={frontmatter.date}
+      content={content}
+    />
   );
 }
