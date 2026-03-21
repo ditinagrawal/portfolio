@@ -2,15 +2,15 @@
 
 import { JetBrains_Mono } from "next/font/google";
 import Image from "next/image";
-import Link from "next/link";
 
 import {
-  IconBrandGithub,
+  IconArrowRight,
   IconChecks,
   IconMedal,
   IconWorld,
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
+import { Link } from "next-view-transitions";
 
 import { featuredProject } from "@/lib/resume";
 import { cn } from "@/lib/utils";
@@ -92,15 +92,12 @@ export const FeaturedProject = () => {
                   <IconWorld className="size-5" /> Live Demo
                 </Link>
               )}
-              {featuredProject.sourceCode && (
-                <Link
-                  href={featuredProject.sourceCode}
-                  target="_blank"
-                  className="flex items-center gap-2 text-sm text-zinc-600 transition-colors duration-300 hover:text-zinc-800"
-                >
-                  <IconBrandGithub className="size-5" /> Source Code
-                </Link>
-              )}
+              <Link
+                href={`/projects/${featuredProject.id}`}
+                className="flex items-center gap-2 text-sm text-zinc-600 transition-colors duration-300 hover:text-zinc-800"
+              >
+                <IconArrowRight className="size-5" /> Read More
+              </Link>
             </div>
           </div>
           <div className="flex items-center overflow-hidden border-t border-zinc-200 bg-white perspective-distant md:border-t-0 md:border-l">

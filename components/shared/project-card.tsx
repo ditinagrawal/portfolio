@@ -1,7 +1,7 @@
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 
-import { IconBrandGithub, IconChecks, IconWorld } from "@tabler/icons-react";
+import { IconArrowRight, IconChecks, IconWorld } from "@tabler/icons-react";
 
 import type { Project } from "@/lib/resume";
 
@@ -34,28 +34,23 @@ export const ProjectCard = ({ project }: { project: Project }) => {
             </li>
           ))}
         </ul>
-        {(project.liveDemo || project.sourceCode) && (
-          <div className="mt-auto flex items-center gap-x-4 pt-6">
-            {project.liveDemo && (
-              <Link
-                href={project.liveDemo}
-                target="_blank"
-                className="flex items-center gap-2 text-sm text-zinc-600 transition-colors duration-300 hover:text-zinc-800"
-              >
-                <IconWorld className="size-5" /> Live Demo
-              </Link>
-            )}
-            {project.sourceCode && (
-              <Link
-                href={project.sourceCode}
-                target="_blank"
-                className="flex items-center gap-2 text-sm text-zinc-600 transition-colors duration-300 hover:text-zinc-800"
-              >
-                <IconBrandGithub className="size-5" /> Source Code
-              </Link>
-            )}
-          </div>
-        )}
+        <div className="mt-auto flex items-center gap-x-4 pt-6">
+          {project.liveDemo && (
+            <Link
+              href={project.liveDemo}
+              target="_blank"
+              className="flex items-center gap-2 text-sm text-zinc-600 transition-colors duration-300 hover:text-zinc-800"
+            >
+              <IconWorld className="size-5" /> Live Demo
+            </Link>
+          )}
+          <Link
+            href={`/projects/${project.id}`}
+            className="flex items-center gap-2 text-sm text-zinc-600 transition-colors duration-300 hover:text-zinc-800"
+          >
+            <IconArrowRight className="size-5" /> Read More
+          </Link>
+        </div>
       </div>
     </div>
   );
