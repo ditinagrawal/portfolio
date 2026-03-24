@@ -1,0 +1,430 @@
+---
+title: CP Built-in Functions CheatSheet
+description: A Built-in Functions CheatSheet for Competitive programmers.
+date: 2025-02-16
+tags: ["competitive-programming", "java", "cheatsheet"]
+---
+
+# Brahmāstra: Part - 1
+
+## Table of Contents
+
+1. [Mathematics & Number Theory](#mathematics--number-theory)
+2. [Arrays](#arrays)
+3. [ArrayList](#arraylist)
+4. [StringBuilder](#stringbuilder)
+5. [Strings](#strings)
+6. [Wrapper Classes](#wrapper-classes)
+7. [LinkedList](#linkedlist)
+8. [Stack](#stack)
+9. [Queue/Deque](#queuedeque)
+10. [Recursion Patterns](#recursion-patterns)
+
+## Mathematics & Number Theory
+
+### Built-in Math Methods
+
+```java
+// Basic Mathematical Operations
+Math.max(a, b)         // Maximum of two numbers
+Math.min(a, b)         // Minimum of two numbers
+Math.abs(n)            // Absolute value
+Math.pow(a, b)         // Power operation
+Math.sqrt(n)           // Square root
+Math.cbrt(n)           // Cube root
+
+// Rounding Operations
+Math.ceil(n)           // Round up to nearest integer
+Math.floor(n)          // Round down to nearest integer
+Math.round(n)          // Round to nearest integer
+
+// Logarithmic Operations
+Math.log(n)            // Natural logarithm
+Math.log10(n)          // Base-10 logarithm
+Math.exp(n)            // e raised to power n
+
+// Other Utility Methods
+Math.random()          // Random number between 0.0 and 1.0
+Math.hypot(x, y)       // Sqrt(x^2 + y^2)
+Math.toDegrees(rad)    // Radians to degrees
+Math.toRadians(deg)    // Degrees to radians
+```
+
+### Trigonometric Functions
+
+```java
+Math.sin(x)            // Sine
+Math.cos(x)            // Cosine
+Math.tan(x)            // Tangent
+Math.asin(x)           // Arc sine
+Math.acos(x)           // Arc cosine
+Math.atan(x)           // Arc tangent
+Math.atan2(y, x)       // Arc tangent of y/x
+```
+
+### Common Number Theory Algorithms
+
+```java
+// Prime number check
+boolean isPrime(int n) {
+    if (n < 2) return false;
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+
+// GCD (Greatest Common Divisor)
+int gcd(int a, int b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+
+// LCM (Least Common Multiple)
+int lcm(int a, int b) {
+    return (a * b) / gcd(a, b);
+}
+
+// Fast Power (Binary Exponentiation)
+long power(long base, long exp, long mod) {
+    long result = 1;
+    base %= mod;
+    while (exp > 0) {
+        if ((exp & 1) == 1)
+            result = (result * base) % mod;
+        base = (base * base) % mod;
+        exp >>= 1;
+    }
+    return result;
+}
+```
+
+## Arrays
+
+### Array Operations
+
+```java
+// Basic Array Operations
+Arrays.sort(arr)                     // Sort array
+Arrays.sort(arr, fromIndex, toIndex) // Sort array range
+Arrays.sort(arr, Collections.reverseOrder())  // Sort descending
+Arrays.sort(arr, (a,b) -> b-a)      // Custom comparator
+
+// Searching and Filling
+Arrays.binarySearch(arr, key)        // Binary search
+Arrays.fill(arr, value)             // Fill array
+
+// Array Manipulation
+Arrays.copyOf(arr, newLength)       // Create copy
+Arrays.copyOfRange(arr, from, to)   // Copy range
+Arrays.equals(arr1, arr2)           // Compare arrays
+Arrays.deepEquals(arr1, arr2)       // Compare nested arrays
+
+// Conversion Methods
+Arrays.toString(arr)                // Convert to string
+Arrays.deepToString(arr)            // Convert nested array
+Arrays.asList(arr)                  // Convert to List
+Arrays.stream(arr)                  // Create stream
+
+// Advanced Operations
+Arrays.parallelSort(arr)            // Parallel sort
+```
+
+## ArrayList
+
+### Basic Operations
+
+```java
+// Adding Elements
+list.add(element)               // Add element
+list.add(index, element)       // Add at index
+list.addAll(collection)        // Add all elements
+
+// Accessing and Modifying
+list.get(index)                // Get element
+list.set(index, element)       // Set element
+list.remove(index)             // Remove by index
+list.remove(Object)            // Remove object
+list.clear()                   // Remove all
+
+// Information Methods
+list.size()                    // Get size
+list.isEmpty()                 // Check if empty
+list.contains(object)          // Check existence
+list.indexOf(object)           // First occurrence
+list.lastIndexOf(object)       // Last occurrence
+
+// Conversion Methods
+list.toArray()                 // Convert to array
+list.toArray(new Type[0])      // Convert to typed array
+list.subList(from, to)         // Get sublist view
+```
+
+### Sorting Operations
+
+```java
+Collections.sort(list)                    // Sort ascending
+Collections.sort(list, Collections.reverseOrder())  // Sort descending
+Collections.sort(list, comparator)        // Custom sort
+Collections.reverse(list)                 // Reverse list
+Collections.shuffle(list)                 // Shuffle list
+Collections.binarySearch(list, key)       // Binary search
+```
+
+## StringBuilder
+
+### String Building Operations
+
+```java
+// Construction and Appending
+StringBuilder sb = new StringBuilder();
+sb.append(str)                 // Add string
+sb.append(char)               // Add character
+sb.insert(offset, str)        // Insert at position
+
+// Modification Methods
+sb.delete(start, end)         // Delete range
+sb.deleteCharAt(index)        // Delete character
+sb.reverse()                  // Reverse string
+sb.replace(start, end, str)   // Replace range
+
+// Access Methods
+sb.substring(start, end)      // Get substring
+sb.charAt(index)              // Get character
+sb.length()                   // Get length
+sb.setLength(newLength)       // Set length
+sb.indexOf(str)               // Find string
+
+// Conversion
+sb.toString()                 // Convert to String
+sb.setCharAt(index, char)     // Set character
+```
+
+## Strings
+
+### String Operations
+
+```java
+// Basic Operations
+str.length()                  // Length
+str.charAt(index)             // Get character
+str.substring(start)          // Substring from start
+str.substring(start, end)     // Substring range
+
+// Searching Methods
+str.indexOf(str)              // Find first occurrence
+str.lastIndexOf(str)          // Find last occurrence
+str.contains(str)             // Check if contains
+str.startsWith(prefix)        // Check prefix
+str.endsWith(suffix)          // Check suffix
+
+// Case Conversion
+str.toLowerCase()             // Convert to lowercase
+str.toUpperCase()             // Convert to uppercase
+str.trim()                    // Remove whitespace
+
+// Modification Methods
+str.replace(old, new)         // Replace all occurrences
+str.replaceAll(regex, repl)   // Replace with regex
+str.split(regex)              // Split to array
+str.join(delimiter, elements) // Join elements
+
+// Pattern Matching
+str.matches(regex)            // Match regex
+
+// Conversion Methods
+str.toCharArray()             // Convert to char array
+
+// Comparison Methods
+str.compareTo(str2)           // Compare strings
+str.equals(str2)              // Check equality
+str.equalsIgnoreCase(str2)    // Case-insensitive equals
+```
+
+## Wrapper Classes
+
+### Integer Operations
+
+```java
+// Conversion Methods
+Integer.parseInt(str)          // String to int
+Integer.toString(num)          // Int to String
+Integer.valueOf(str)           // String to Integer object
+
+// Bit Operations
+Integer.bitCount(n)            // Count set bits
+Integer.highestOneBit(n)      // Highest set bit
+Integer.lowestOneBit(n)       // Lowest set bit
+Integer.numberOfLeadingZeros(n)
+Integer.numberOfTrailingZeros(n)
+
+// Constants
+Integer.MAX_VALUE             // Maximum value
+Integer.MIN_VALUE             // Minimum value
+```
+
+### Character Operations
+
+```java
+// Character Checking
+Character.isDigit(ch)         // Check if digit
+Character.isLetter(ch)        // Check if letter
+Character.isLetterOrDigit(ch) // Check alphanumeric
+Character.isWhitespace(ch)    // Check whitespace
+Character.isUpperCase(ch)     // Check uppercase
+Character.isLowerCase(ch)     // Check lowercase
+
+// Case Conversion
+Character.toUpperCase(ch)     // Convert to uppercase
+Character.toLowerCase(ch)     // Convert to lowercase
+```
+
+## LinkedList
+
+### LinkedList Operations
+
+```java
+// Adding Elements
+list.add(element)             // Add at end
+list.addFirst(element)        // Add at start
+list.addLast(element)         // Add at end
+
+// Removing Elements
+list.remove(element)          // Remove element
+list.removeFirst()            // Remove from start
+list.removeLast()             // Remove from end
+
+// Accessing Elements
+list.getFirst()               // Get first element
+list.getLast()                // Get last element
+list.peek()                   // View first element
+list.peekFirst()             // View first element
+list.peekLast()              // View last element
+
+// Queue-like Operations
+list.poll()                   // Remove and return first
+list.pollFirst()             // Remove and return first
+list.pollLast()              // Remove and return last
+list.offer(element)           // Add at end
+list.offerFirst(element)      // Add at start
+list.offerLast(element)       // Add at end
+```
+
+## Stack
+
+### Stack Operations
+
+```java
+// Basic Operations
+stack.push(element)           // Add element
+stack.pop()                   // Remove and return top
+stack.peek()                  // View top element
+stack.empty()                 // Check if empty
+stack.search(element)         // Find position
+stack.size()                  // Get size
+stack.clear()                 // Remove all elements
+```
+
+## Queue/Deque
+
+### Queue Operations
+
+```java
+// Basic Queue Operations
+queue.offer(element)          // Add element
+queue.poll()                  // Remove and return front
+queue.peek()                  // View front element
+queue.size()                  // Get size
+queue.isEmpty()               // Check if empty
+```
+
+### Deque Operations
+
+```java
+// Double-ended Queue Operations
+deque.addFirst(element)       // Add at front
+deque.addLast(element)        // Add at end
+deque.removeFirst()           // Remove from front
+deque.removeLast()            // Remove from end
+deque.getFirst()              // Get first element
+deque.getLast()               // Get last element
+deque.peekFirst()            // View first element
+deque.peekLast()             // View last element
+```
+
+## Recursion Patterns
+
+### 1. Basic Recursion
+
+```java
+void basic(int n) {
+    if (n == 0) return;  // Base case
+    // Process current
+    basic(n - 1);        // Recursive call
+}
+```
+
+### 2. Multiple Recursion Calls
+
+```java
+int fibonacci(int n) {
+    if (n <= 1) return n;
+    return fibonacci(n-1) + fibonacci(n-2);
+}
+```
+
+### 3. Recursion with Helper Function
+
+```java
+int solve(int n) {
+    return helper(n, additional_params);
+}
+
+int helper(int n, /* additional parameters */) {
+    if (base_case) return value;
+    // Process and make recursive calls
+    return helper(modified_params);
+}
+```
+
+### 4. Backtracking Pattern
+
+```java
+void backtrack(int[] arr, int index) {
+    if (index == arr.length) {
+        // Process solution
+        return;
+    }
+
+    for (int i = index; i < arr.length; i++) {
+        // Make change
+        swap(arr, index, i);
+        // Recurse
+        backtrack(arr, index + 1);
+        // Undo change (backtrack)
+        swap(arr, index, i);
+    }
+}
+```
+
+### 5. Divide and Conquer
+
+```java
+T divideConquer(problem) {
+    if (problem is small enough) {
+        solve directly
+    }
+
+    // Divide
+    subproblems = divide(problem)
+
+    // Conquer
+    subresults = []
+    for (subproblem : subproblems) {
+        result = divideConquer(subproblem)
+        subresults.add(result)
+    }
+
+    // Combine
+    return combine(subresults)
+}
+```

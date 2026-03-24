@@ -1,0 +1,1904 @@
+---
+title: Object-Oriented Programming in Java
+description: A comprehensive journey through OOP concepts with practical examples and real-world applications
+date: 2025-06-18
+tags: ["java", "oop", "programming"]
+---
+
+# 🚀 Complete Guide to Object-Oriented Programming in Java
+
+_A comprehensive journey through OOP concepts with practical examples and real-world applications_
+
+---
+
+## 📋 Table of Contents
+
+1. [Introduction to Classes and Objects](#introduction-to-classes-and-objects)
+2. [Static Members and Packages](#static-members-and-packages)
+3. [Inheritance and Polymorphism](#inheritance-and-polymorphism)
+4. [Access Control and Object Class](#access-control-and-object-class)
+5. [Abstract Classes and Interfaces](#abstract-classes-and-interfaces)
+6. [Advanced OOP Concepts](#advanced-oop-concepts)
+
+---
+
+## 🎯 Introduction to Classes and Objects
+
+Let's consider a problem: A university needs to manage student data, including roll numbers, names, and marks. The goal is to create an application that can store and manipulate this data efficiently.
+
+Initially, one might think of using separate arrays for each property:
+
+- `int[] rollNumbers`
+- `String[] names`
+- `float[] marks`
+
+However, this approach is not ideal because it scatters related data across multiple arrays. A better solution is to use a class to group these properties into a single entity.
+
+### Introduction to Classes
+
+A class is a named group of properties(attributes) and Methods(functions). It allows you to combine related data into a single entity.
+
+In this case, a `Student` class can be created to hold the roll number, name, and marks of a student.
+
+> By convention, class names start with a capital letter.
+
+Using a class, you can create a `Student` data type:
+
+```java
+Student Ditin = new Student();
+```
+
+This creates a `Student` object named `Ditin`, which will contain the three properties: roll number, name, and marks.
+
+### Detailed Explanation of Classes and Objects
+
+A class is a logical construct or a template, while an object is a physical instance of that class. Think of a class as a blueprint and an object as the actual building constructed from that blueprint.
+
+#### Real-World Analogy: Car Class
+
+Consider a `Car` class. It defines the properties and functions that all cars have, such as price, number of seats, and engine type. Different companies like BMW, Audi, and Ferrari use this template to create their own cars.
+
+```text
+Car (Class)
+|
+|-- Properties: price, seats, engine
+|
+|-- Instances (Objects):
+|   |-- Maruti (price: 1L, seats: 4, engine: Petrol)
+|   |-- Ferrari (price: 2Cr, seats: 2, engine: Petrol)
+|   |-- Audi (price: ..., seats: ..., engine: Electric)
+```
+
+Each car has the same properties (engine, price, seats), but the values of these properties can be different for each car.
+
+#### Key Differences
+
+- **Class**: A template or blueprint. It doesn't exist physically.
+- **Object**: A physical instance of the class. It occupies space in memory.
+
+#### The Human Analogy
+
+The `Human` class defines the rules for what a human is: two arms, two legs, a head, etc. Actual humans (objects) are instances of this class, each with their own unique characteristics.
+
+### Properties of Objects
+
+Objects are characterized by:
+
+- State: The data they hold (e.g., roll number, name, marks).
+- Identity: What makes them unique.
+- Behavior: What they can do (e.g., greeting).
+
+### Creating Objects in Java
+
+To create an object, you use the `new` keyword. This keyword allocates memory for the object and returns a reference to it.
+
+```java
+Student student1 = new Student();
+```
+
+Here, `student1` is a reference variable of type `Student`. The `new Student()` part creates the object in memory.
+
+> Important: In Java, all objects are stored in heap memory.
+
+#### Dynamic Memory Allocation
+
+Dynamic memory allocation means that memory is allocated at runtime. When the Java code compiles, it doesn't know how much memory will be needed. The `new` keyword allocates memory when the program is running.
+
+### Accessing Object Properties
+
+To access the properties of an object, you use the dot operator (`.`).
+
+```java
+System.out.println(student1.rollNumber);
+```
+
+This will print the value of the `rollNumber` property of the `student1` object.
+
+#### Instance Variables
+
+Instance variables are variables that are declared inside the class but outside any method or constructor. They hold the state of the object.
+
+### Example: Student Class Implementation
+
+Let's create a `Student` class with properties for roll number, name, and marks.
+
+```java
+class Student {
+    int rollNumber;
+    String name;
+    float marks;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student student1 = new Student();
+        student1.rollNumber = 1;
+        student1.name = "Ditin";
+        student1.marks = 85.5f;
+
+        System.out.println("Roll Number: " + student1.rollNumber);
+        System.out.println("Name: " + student1.name);
+        System.out.println("Marks: " + student1.marks);
+    }
+}
+```
+
+### Default Values
+
+When an object is created, its properties are initialized with default values.
+
+- `int`: 0
+- `float`: 0.0
+- `String`: null
+
+### Modifying Object Properties
+
+You can modify the properties of an object using the dot operator.
+
+```java
+student1.rollNumber = 13;
+student1.name = "Ditin Agrawal";
+student1.marks = 84.5f;
+```
+
+### Introduction to Constructors
+
+A constructor is a special type of function that is called when an object is created. It is used to initialize the object's properties.
+
+#### Default Constructor
+
+If you don't define a constructor in your class, Java will provide a default constructor. This constructor takes no arguments and initializes all properties to their default values.
+
+#### Custom Constructors
+
+You can define your own constructors to initialize the object's properties with specific values.
+
+```java
+class Student {
+    int rollNumber;
+    String name;
+    float marks;
+
+    public Student(int rollNumber, String name, float marks) {
+        this.rollNumber = rollNumber;
+        this.name = name;
+        this.marks = marks;
+    }
+}
+```
+
+#### The `this` Keyword
+
+The `this` keyword is used to refer to the current object. It is used to differentiate between the instance variables and the local variables.
+
+```java
+this.rollNumber = rollNumber;
+```
+
+Here, `this.rollNumber` refers to the instance variable `rollNumber`, while `rollNumber` refers to the local variable `rollNumber`.
+
+#### Example with Constructor
+
+```java
+class Student {
+    int rollNumber;
+    String name;
+    float marks;
+
+    public Student(int rollNumber, String name, float marks) {
+        this.rollNumber = rollNumber;
+        this.name = name;
+        this.marks = marks;
+    }
+
+    public void greeting() {
+        System.out.println("Hello, my name is " + this.name);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student Ditin = new Student(13, "Ditin Agrawal", 84.5f);
+        Ditin.greeting(); // Output: Hello, my name is Ditin Agrawal
+    }
+}
+```
+
+#### Method to Change Name
+
+```java
+public void changeName(String newName) {
+    this.name = newName;
+}
+```
+
+### Constructor Overloading
+
+Constructor overloading is the ability to define multiple constructors with different parameters. This allows you to create objects in different ways.
+
+```java
+class Student {
+    int rollNumber;
+    String name;
+    float marks;
+
+    public Student(int rollNumber, String name, float marks) {
+        this.rollNumber = rollNumber;
+        this.name = name;
+        this.marks = marks;
+    }
+
+    public Student(Student other) {
+        this.rollNumber = other.rollNumber;
+        this.name = other.name;
+        this.marks = other.marks;
+    }
+}
+```
+
+### The `final` Keyword
+
+The `final` keyword is used to prevent a variable from being modified after it has been initialized.
+
+```java
+final int bonus = 100;
+```
+
+#### Final with Primitive Types
+
+If a variable is declared as `final` and it is a primitive type, its value cannot be changed.
+
+#### Final with Reference Types
+
+If a variable is declared as `final` and it is a reference type, the reference cannot be changed, but the object's properties can be changed.
+
+```java
+final Student Ditin = new Student(13, "Ditin Agrawal", 84.5f);
+Ditin.name = "New Name"; // This is allowed
+Ditin = new Student(14, "Another Name", 90.0f); // This is not allowed
+```
+
+### Garbage Collection and Finalization
+
+Java has automatic garbage collection, which means that it automatically reclaims memory that is no longer being used. When an object is about to be garbage collected, the `finalize()` method is called.
+
+> Note: You cannot manually destroy objects in Java.
+
+#### The `finalize()` Method
+
+The `finalize()` method is used to perform any cleanup operations before an object is garbage collected.
+
+```java
+@Override
+protected void finalize() throws Throwable {
+    System.out.println("Object is being destroyed");
+}
+```
+
+### Object References
+
+When you assign one object reference to another, you are not creating a new object. You are simply creating another reference to the same object.
+
+```java
+Student student1 = new Student(13, "Ditin Agrawal", 84.5f);
+Student student2 = student1;
+```
+
+In this case, `student1` and `student2` both refer to the same object. If you modify the object through `student1`, the changes will also be visible through `student2`.
+
+### Wrapper Classes
+
+Wrapper classes are used to convert primitive types into objects. For example, the `Integer` class is used to wrap an `int`.
+
+```java
+Integer num = new Integer(5);
+```
+
+#### Why Use Wrapper Classes?
+
+Wrapper classes are useful because they allow you to treat primitive types as objects. This is necessary in some cases, such as when you need to store primitive types in a collection.
+
+### Pass by Value vs. Pass by Reference
+
+In Java, primitive types are passed by value, while objects are passed by reference. This means that when you pass a primitive type to a method, the method receives a copy of the value. When you pass an object to a method, the method receives a copy of the reference.
+
+---
+
+## ⚡ Static Members and Packages
+
+### Introduction to Static
+
+Static members (variables and methods) belong to the class itself rather than to any specific instance of the class. This means there's only one copy of a static variable, shared among all objects of that class.
+
+#### Static Variables
+
+Static variables are initialized only once, when the class is first loaded. They are not tied to any particular object. The speaker uses the example of a `Human` class with a `population` variable. The population count is a property of all humans collectively, not of each individual human.
+
+```java
+class Human {
+    static int population;
+    String name;
+    int age;
+
+    public Human(String name, int age) {
+        this.name = name;
+        this.age = age;
+        Human.population++; // Increment population on object creation
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Human ditin = new Human("ditin", 30);
+        Human rahul = new Human("Rahul", 25);
+        System.out.println(Human.population); // Accessing static variable using class name
+    }
+}
+```
+
+> Note: Access static variables using the class name (`Human.population`) rather than an object reference (`ditin.population`). Although using an object reference might work, it's not the recommended practice.
+
+#### Static Methods
+
+Static methods, like static variables, belong to the class itself. They can be called without creating an object of the class. A common example is the `main` method, which is the entry point of a Java program.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+> The `main` method must be static because it needs to be executed before any objects are created.
+
+##### Restrictions of Static Methods
+
+Static methods have some limitations:
+
+- They can only directly access static variables and other static methods.
+- They cannot use the `this` keyword, as `this` refers to the current object, and static methods are not associated with any specific object.
+
+```java
+class Example {
+    static int staticVar = 10;
+    int nonStaticVar = 20;
+
+    static void staticMethod() {
+        System.out.println(staticVar); // OK
+        // System.out.println(nonStaticVar); // Compilation error: Cannot access non-static variable
+        // System.out.println(this.staticVar); // Compilation error: Cannot use 'this' in a static context
+    }
+}
+```
+
+#### Static Blocks
+
+Static blocks are used to initialize static variables. They are executed only once, when the class is first loaded.
+
+```java
+class StaticBlock {
+    static int a;
+    static int b;
+
+    static {
+        System.out.println("I am in static block");
+        a = 5;
+        b = 10;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Value of a: " + a);
+        System.out.println("Value of b: " + b);
+    }
+}
+```
+
+> Static blocks are useful for performing complex initialization logic that cannot be done in a single line.
+
+#### Nested Classes and Static
+
+Only nested classes (classes declared inside another class) can be declared as static. A static nested class is like a static member of the outer class. It can be accessed using the outer class name.
+
+```java
+class OuterClass {
+    static class NestedClass {
+        void display() {
+            System.out.println("Inside static nested class");
+        }
+    }
+
+    public static void main(String[] args) {
+        OuterClass.NestedClass nested = new OuterClass.NestedClass();
+        nested.display();
+    }
+}
+```
+
+> A non-static nested class (also called an inner class) has access to the members of the outer class, even if they are private. A static nested class does not have this access.
+
+### Packages in Java
+
+Packages are used to organize classes and interfaces into namespaces, providing a way to manage large codebases and avoid naming conflicts. Think of packages as folders or directories that contain related files.
+
+#### Why Use Packages?
+
+- **Organization:** Packages help structure your code into logical groups.
+- **Naming Conflicts:** They prevent naming collisions when you have classes with the same name in different parts of your application.
+- **Access Control:** Packages provide a level of access control, allowing you to hide certain classes or members from external use.
+
+#### Package Declaration
+
+To declare a class as part of a package, use the `package` keyword at the beginning of the source file.
+
+```java
+package com.example;
+
+public class MyClass {
+    // Class implementation
+}
+```
+
+> The package name should follow a hierarchical structure, often based on the organization's domain name in reverse order (e.g., `com.example`).
+
+#### Importing Classes from Packages
+
+To use a class from a different package, you need to import it using the `import` keyword.
+
+```java
+import com.example.MyClass;
+
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        // Use MyClass object
+    }
+}
+```
+
+> You can also import all classes from a package using a wildcard: `import com.example.*;`
+
+#### Packages and Visibility
+
+When working with packages, access modifiers like `public`, `private`, and `protected` control the visibility of classes and members. If a class or member is not declared with any access modifier (package-private), it is only accessible within the same package.
+
+### Understanding `System.out.println()`
+
+The speaker breaks down the ubiquitous `System.out.println()` statement.
+
+- `System` is a class in the `java.lang` package.
+- `out` is a static member of the `System` class, representing the standard output stream.
+- `println()` is a method of the `PrintStream` class (the type of `System.out`) that prints a line of text to the console.
+
+> Because `out` is a static member, you don't need to create an object of the `System` class to use it.
+
+### Overriding the `toString()` Method
+
+The `toString()` method is a method inherited from the `Object` class that provides a string representation of an object. By default, it returns a string containing the class name and the object's hash code. You can override this method in your own classes to provide a more meaningful string representation.
+
+```java
+class Person {
+    String name;
+    int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{name='" + name + "', age=" + age + "'}";
+    }
+
+    public static void main(String[] args) {
+        Person person = new Person("Alice", 30);
+        System.out.println(person); // Prints the overridden toString() output
+    }
+}
+```
+
+> Overriding `toString()` is useful for debugging and logging.
+
+### Singleton Class
+
+The speaker introduces the Singleton design pattern, which ensures that a class has only one instance and provides a global point of access to it.
+
+#### Implementing a Singleton
+
+1.  Make the constructor private to prevent external instantiation.
+2.  Create a static instance of the class within the class.
+3.  Provide a static method (e.g., `getInstance()`) that returns the instance. This method should create the instance if it doesn't already exist.
+
+```java
+class Singleton {
+    private static Singleton instance;
+
+    private Singleton() { // Private constructor
+        // Initialization code
+    }
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+
+    public void doSomething() {
+        System.out.println("Singleton is doing something!");
+    }
+
+    public static void main(String[] args) {
+        Singleton obj1 = Singleton.getInstance();
+        Singleton obj2 = Singleton.getInstance();
+
+        System.out.println(obj1 == obj2); // Output: true (same instance)
+        obj1.doSomething();
+    }
+}
+```
+
+> The Singleton pattern is useful when you need to control the creation of objects and ensure that only one instance exists (e.g., for managing resources or configurations).
+
+---
+
+## 🔄 Inheritance and Polymorphism
+
+### Inheritance
+
+Inheritance is a core concept where a class (child class) inherits properties and functions from another class (base class or parent class). This promotes code reuse and establishes a hierarchy between classes.
+
+> Note: Think of real-life inheritance, where children inherit traits and properties from their parents.
+
+In OOP, the child class gains access to the members of the base class. For example, if a base class defines `length`, `width`, and `height`, a child class inheriting from it can directly use these properties. Additionally, the child class can have its own unique properties.
+
+```java
+// Base class
+class BaseClass {
+    int length;
+    int width;
+    int height;
+}
+
+// Child class inheriting from BaseClass
+class ChildClass extends BaseClass {
+    int weight;
+}
+```
+
+The `extends` keyword in Java is used to establish the inheritance relationship. The child class can then access the base class's members.
+
+```java
+ChildClass child = new ChildClass();
+child.length = 10; // Accessing base class property
+child.weight = 5;  // Accessing child class property
+```
+
+When a constructor is called for the child class, it's crucial to initialize the parent class's variables as well. This is often done using the `super()` keyword.
+
+> Note: If a member in the base class is declared as `private`, it cannot be directly accessed by the child class.
+
+#### Example: Box and BoxWeight
+
+Consider a `Box` class with properties like `length`, `width`, and `height`. A `BoxWeight` class can extend `Box` and add a `weight` property.
+
+```java
+class Box {
+    double length;
+    double width;
+    double height;
+
+    // Constructor
+    public Box(double length, double width, double height) {
+        this.length = length;
+        this.width = width;
+        this.height = height;
+    }
+
+    // Overloaded constructor
+    public Box(double side) {
+        this.length = side;
+        this.width = side;
+        this.height = side;
+    }
+
+    // Copy constructor
+    public Box(Box oldBox) {
+        this.length = oldBox.length;
+        this.width = oldBox.width;
+        this.height = oldBox.height;
+    }
+}
+
+class BoxWeight extends Box {
+    double weight;
+
+    public BoxWeight(double length, double width, double height, double weight) {
+        super(length, width, height); // Call to parent constructor
+        this.weight = weight;
+    }
+}
+```
+
+In the `BoxWeight` constructor, `super(length, width, height)` calls the constructor of the `Box` class to initialize the inherited properties. If you don't call the super constructor, the parent class's variables will not be properly initialized.
+
+> Important: The type of the _reference variable_ determines what members can be accessed, not the type of the object itself.
+
+```java
+Box box5 = new BoxWeight(1, 2, 3, 4); // Valid
+// box5.weight = 5; // Compilation error: Box doesn't have weight
+```
+
+#### The `super` Keyword
+
+The `super` keyword is used to refer to the superclass (parent class). It has two main uses:
+
+1.  Calling the superclass constructor: `super(arguments)`
+2.  Accessing superclass members: `super.member`
+
+When calling the superclass constructor, it _must_ be the first statement in the subclass constructor. This ensures that the superclass is properly initialized before the subclass adds its own specific initialization.
+
+### Types of Inheritance
+
+There are several types of inheritance:
+
+1.  **Single Inheritance:** A class inherits from only one base class.
+2.  **Multilevel Inheritance:** A class inherits from a class, which in turn inherits from another class (creating a chain).
+3.  **Multiple Inheritance:** A class inherits from multiple base classes. This is _not directly supported_ in Java (but can be achieved using interfaces).
+4.  **Hierarchical Inheritance:** Multiple classes inherit from a single base class.
+5.  **Hybrid Inheritance:** A combination of single and multiple inheritance. Not directly supported in Java.
+
+### Polymorphism
+
+Polymorphism means "many forms." In OOP, it refers to the ability of an object to take on many forms. This is achieved through method overloading and method overriding.
+
+#### Method Overloading (Compile-Time Polymorphism)
+
+Method overloading occurs when a class has multiple methods with the same name but different parameters (different number, type, or order of parameters). The compiler determines which method to call based on the arguments passed.
+
+```java
+class Numbers {
+    public int sum(int a, int b) {
+        return a + b;
+    }
+
+    public double sum(double a, double b) {
+        return a + b;
+    }
+
+    public String sum(String a, String b) {
+        return a + b;
+    }
+}
+
+Numbers numbers = new Numbers();
+int sum1 = numbers.sum(1, 2);         // Calls the first sum method
+double sum2 = numbers.sum(1.5, 2.5);   // Calls the second sum method
+String sum3 = numbers.sum("Hello", "World"); // Calls the third sum method
+```
+
+#### Method Overriding (Run-Time Polymorphism)
+
+Method overriding occurs when a subclass provides a specific implementation for a method that is already defined in its superclass. The method in the subclass must have the same name, return type, and parameters as the method in the superclass.
+
+```java
+class Shape {
+    public double area() {
+        return 0.0;
+    }
+}
+
+class Circle extends Shape {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public double area() {
+        return Math.PI * radius * radius;
+    }
+}
+
+Shape shape = new Circle(5); // Shape reference, Circle object
+double area = shape.area();  // Calls the Circle's area() method
+```
+
+> Note: The `@Override` annotation is used to indicate that a method is intended to override a method in the superclass. It's good practice to use this annotation to catch errors at compile time.
+
+In this example, even though `shape` is a `Shape` reference, the `area()` method that is called is the one defined in the `Circle` class. This is because the object is actually a `Circle` object, and the `area()` method is overridden.
+
+##### Dynamic Method Dispatch
+
+Java uses dynamic method dispatch to determine which version of an overridden method to call at runtime. This is based on the actual type of the object, not the type of the reference variable.
+
+##### The `final` Keyword
+
+The `final` keyword can be used to prevent method overriding. If a method is declared as `final`, it cannot be overridden in any subclass.
+
+```java
+class Base {
+    public final void myMethod() {
+        System.out.println("Base class method");
+    }
+}
+
+class Derived extends Base {
+    // public void myMethod() { // Compilation error: Cannot override
+    //     System.out.println("Derived class method");
+    // }
+}
+```
+
+The `final` keyword can also be used to prevent inheritance. If a class is declared as `final`, it cannot be subclassed.
+
+##### Static Methods
+
+Static methods _cannot_ be overridden. While a subclass can define a static method with the same signature as a static method in the superclass, this is method hiding, not method overriding. The method that is called depends on the class that is used to reference the method.
+
+```java
+class Parent {
+    public static void greet() {
+        System.out.println("Hello from Parent");
+    }
+}
+
+class Child extends Parent {
+    public static void greet() {
+        System.out.println("Hello from Child");
+    }
+}
+
+Parent.greet(); // Prints "Hello from Parent"
+Child.greet();  // Prints "Hello from Child"
+
+Parent p = new Child();
+p.greet();      // Prints "Hello from Parent" (because greet() is static)
+```
+
+### Encapsulation
+
+Encapsulation is the bundling of data (attributes) and methods that operate on that data into a single unit (a class). It also involves hiding the internal implementation details of the class from the outside world and providing a public interface for accessing and manipulating the data.
+
+> Note: Encapsulation is about protecting the data and controlling access to it.
+
+This is typically achieved by declaring the attributes of a class as `private` and providing public getter and setter methods (accessors and mutators) for accessing and modifying the attributes.
+
+```java
+class Person {
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age >= 0) {
+            this.age = age;
+        }
+    }
+}
+```
+
+In this example, the `name` and `age` attributes are declared as `private`, which means they can only be accessed from within the `Person` class. The public `getName()`, `setName()`, `getAge()`, and `setAge()` methods provide a controlled way to access and modify these attributes.
+
+### Abstraction
+
+Abstraction is the process of hiding complex implementation details and exposing only the essential information to the user. It allows the user to interact with an object without needing to know how it works internally.
+
+> Note: Abstraction is about simplifying the interface and hiding complexity.
+
+Abstraction can be achieved through abstract classes and interfaces. An abstract class is a class that cannot be instantiated and may contain abstract methods (methods without an implementation). A subclass of an abstract class must provide an implementation for all abstract methods.
+
+An interface is a collection of abstract methods. A class can implement multiple interfaces, which allows it to inherit multiple behaviors.
+
+> Key Difference: Encapsulation is about _what_ data is exposed, while abstraction is about _how_ the data is exposed.
+
+---
+
+## 🔒 Access Control and Object Class
+
+### Access Control Modifiers
+
+Access control in Java is about protecting data by restricting access to class members. Let's explore the different access modifiers:
+
+#### Private
+
+When a member (variable or method) is declared `private`, it can only be accessed from within the same class. Here's an example:
+
+```java
+class MyClass {
+    private int number = 10;
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int newNumber) {
+        this.number = newNumber;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        // obj.number = 20; // This would cause an error because 'number' is private
+        obj.setNumber(20); // Correct way to modify the private variable
+        System.out.println(obj.getNumber()); // Accessing the private variable through a getter method
+    }
+}
+```
+
+> Note: The `private` modifier ensures data hiding, which is a key aspect of encapsulation. You can access or modify private members using getter and setter methods.
+
+#### Public
+
+Members declared as `public` can be accessed from anywhere, inside or outside the class, and from any package.
+
+```java
+class MyClass {
+    public int number = 10;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        obj.number = 20; // Accessing the public variable directly
+        System.out.println(obj.number);
+    }
+}
+```
+
+> Warning: Using `public` members extensively can reduce encapsulation and make the code more vulnerable to unintended modifications.
+
+#### Protected
+
+The `protected` modifier allows access within the same class, the same package, and by subclasses, even if they are in a different package. Here's how it works:
+
+```java
+package package1;
+
+public class MyClass {
+    protected int number = 10;
+}
+
+package package2;
+
+import package1.MyClass;
+
+class SubClass extends MyClass {
+    public void printNumber() {
+        System.out.println(number); // Accessing protected member in a subclass
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        SubClass obj = new SubClass();
+        obj.printNumber();
+
+        MyClass obj2 = new MyClass();
+        // System.out.println(obj2.number); // This would cause an error because Main is not a subclass of MyClass in package1
+    }
+}
+```
+
+> Tip: `protected` is often used in inheritance scenarios where you want subclasses to have access to certain members but prevent access from unrelated classes.
+
+#### Default (Package-Private)
+
+If no access modifier is specified, the member has default (or package-private) access. This means it is accessible only within the same package.
+
+```java
+package mypackage;
+
+class MyClass {
+    int number = 10; // Default access
+}
+
+public class AnotherClass {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        System.out.println(obj.number); // Accessible because AnotherClass is in the same package
+    }
+}
+```
+
+> Note: Default access is useful for hiding implementation details within a package.
+
+### Packages in Java
+
+Packages are used to organize classes and interfaces into namespaces, providing better modularity and preventing naming conflicts. There are two types of packages:
+
+#### Built-in Packages
+
+Java provides many built-in packages, such as `java.lang`, `java.io`, `java.util`, `java.awt`, `java.net`, and `javax.swing`. The `java.lang` package is automatically imported into every Java program.
+
+- `java.lang`: Contains core classes like `String`, `Integer`, `Math`, and `Object`. It's automatically imported.
+- `java.io`: Provides classes for input and output operations.
+- `java.util`: Contains utility classes like data structures (e.g., `ArrayList`, `HashMap`) and date/time classes.
+- `java.awt` and `javax.swing`: Used for creating graphical user interfaces (GUIs).
+- `java.net`: Supports networking operations.
+
+#### User-Defined Packages
+
+You can create your own packages to organize your classes. To create a package, declare the package name at the beginning of the Java file:
+
+```java
+package com.example;
+
+public class MyClass {
+    // Class implementation
+}
+```
+
+> Tip: Packages help in managing large projects by grouping related classes together.
+
+### The Object Class
+
+In Java, the `Object` class is the root of the class hierarchy. Every class implicitly or explicitly inherits from the `Object` class. It provides several important methods:
+
+#### toString()
+
+The `toString()` method returns a string representation of the object. It's often overridden to provide a more meaningful representation.
+
+```java
+class MyClass {
+    int number;
+    String name;
+
+    public MyClass(int number, String name) {
+        this.number = number;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "MyClass{number=" + number + ", name='" + name + "'}";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass(42, "Example");
+        System.out.println(obj.toString()); // Output: MyClass{number=42, name='Example'}
+    }
+}
+```
+
+#### equals()
+
+The `equals()` method checks if two objects are equal. The default implementation checks if the two objects are the same instance. It's often overridden to compare the contents of the objects.
+
+```java
+class MyClass {
+    int number;
+    String name;
+
+    public MyClass(int number, String name) {
+        this.number = number;
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        MyClass myClass = (MyClass) obj;
+        return number == myClass.number && Objects.equals(name, myClass.name);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj1 = new MyClass(42, "Example");
+        MyClass obj2 = new MyClass(42, "Example");
+        System.out.println(obj1.equals(obj2)); // Output: true
+    }
+}
+```
+
+> Warning: When overriding `equals()`, you should also override `hashCode()` to maintain consistency.
+
+#### hashCode()
+
+The `hashCode()` method returns a hash code value for the object. It's used by hash-based collections like `HashMap`.
+
+```java
+import java.util.Objects;
+
+class MyClass {
+    int number;
+    String name;
+
+    public MyClass(int number, String name) {
+        this.number = number;
+        this.name = name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number, name);
+    }
+}
+```
+
+#### getClass()
+
+The `getClass()` method returns the runtime class of the object.
+
+```java
+class MyClass {
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        System.out.println(obj.getClass()); // Output: class MyClass
+    }
+}
+```
+
+#### finalize()
+
+The `finalize()` method is called by the garbage collector when the object is no longer in use. It's used to perform cleanup operations.
+
+> Note: The use of `finalize()` is discouraged in modern Java development. It's better to use try-with-resources or other explicit cleanup mechanisms.
+
+#### instanceof
+
+The `instanceof` operator checks if an object is an instance of a particular class or interface.
+
+```java
+class MyClass {
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        System.out.println(obj instanceof MyClass); // Output: true
+        System.out.println(obj instanceof Object); // Output: true
+    }
+}
+```
+
+---
+
+## 🎭 Abstract Classes and Interfaces
+
+### The Problem with Multiple Inheritance
+
+Java does not support multiple inheritance directly. This is because if a class could inherit from two classes that both have a method with the same name, it would be ambiguous which method to call. This is often referred to as the "diamond problem."
+
+### Abstraction: Defining What to Do, Not How
+
+Abstraction allows us to create parent classes that define a contract for their subclasses. The parent class specifies _what_ needs to be done, but leaves the _how_ to the child classes. This is achieved through abstract methods.
+
+> Note: An abstract method has no body in the parent class. It's essentially a placeholder that _must_ be implemented by any concrete (non-abstract) subclass.
+
+Consider a `Career` class. It might have an abstract method called `work()`. The parent class dictates that every career _must_ have a `work()` method, but the specific implementation of `work()` will differ depending on the career (e.g., doctor, coder).
+
+```java
+abstract class Career {
+    abstract void work(String name);
+}
+```
+
+### Abstract Classes: Templates for Implementation
+
+An abstract class serves as a template. It can contain both abstract methods (methods without implementation) and concrete methods (methods with implementation). The key characteristic of an abstract class is that it cannot be instantiated directly.
+
+> Important: If a class contains one or more abstract methods, the class itself _must_ be declared abstract.
+
+```java
+abstract class AbstractDemo {
+    abstract void career(String name);
+}
+```
+
+In this example, `career()` is an abstract method. Any class that extends `AbstractDemo` must provide an implementation for `career()`. If it doesn't, the subclass must also be declared abstract.
+
+### Implementing Abstract Classes
+
+To use an abstract class, you must create a concrete subclass that provides implementations for all of the abstract methods.
+
+```java
+class Son extends AbstractDemo {
+    @Override
+    void career(String name) {
+        System.out.println("I love " + name + "\n" + "Son is doing something");
+    }
+}
+
+class Daughter extends AbstractDemo {
+    @Override
+    void career(String name) {
+        System.out.println("I love " + name + "\n" + "Daughter is doing something");
+    }
+}
+```
+
+Here, `Son` and `Daughter` are concrete subclasses of `AbstractDemo`. They both provide implementations for the `career()` method. This is known as _overriding_ the abstract method.
+
+### Runtime Polymorphism
+
+This example demonstrates runtime polymorphism. The actual method that gets called is determined at runtime based on the object's type.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Son son = new Son();
+        son.career("Summit");
+
+        Daughter daughter = new Daughter();
+        daughter.career("Summit");
+    }
+}
+```
+
+### Abstract Classes and Constructors
+
+Although you cannot create objects of an abstract class directly, abstract classes _can_ have constructors. These constructors are called when a subclass is instantiated, using the `super()` keyword.
+
+### Static Methods in Abstract Classes
+
+Abstract classes can contain static methods. Static methods are associated with the class itself, not with any particular instance of the class. Therefore, they can be called directly using the class name.
+
+```java
+abstract class AbstractDemo {
+    static void hello() {
+        System.out.println("Hello from AbstractDemo");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        AbstractDemo.hello(); // Calling static method
+    }
+}
+```
+
+### Normal Methods in Abstract Classes
+
+Abstract classes can also contain normal (non-abstract) methods. These methods provide a default implementation that subclasses can either use as is or override.
+
+### Final Keyword and Abstract Classes
+
+The `final` keyword prevents a class from being inherited. Therefore, you cannot have a `final abstract class`, as it would be contradictory.
+
+### Interfaces: Pure Abstraction
+
+An interface is a completely abstract "class" that is used to group related method declarations without providing an implementation. It's a contract that specifies what a class _must_ do, but not _how_ it should do it.
+
+> Note: All methods in an interface are implicitly `public` and `abstract`.
+
+```java
+interface Engine {
+    void start();
+    void stop();
+    void accelerate();
+}
+```
+
+### Implementing Interfaces
+
+To use an interface, a class _implements_ the interface using the `implements` keyword. The class must provide implementations for all of the methods declared in the interface.
+
+```java
+class Car implements Engine {
+    @Override
+    public void start() {
+        System.out.println("Car started");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("Car stopped");
+    }
+
+    @Override
+    public void accelerate() {
+        System.out.println("Car accelerating");
+    }
+}
+```
+
+### Multiple Inheritance with Interfaces
+
+Unlike classes, a class _can_ implement multiple interfaces. This allows a class to inherit multiple contracts.
+
+```java
+interface Media {
+    void play();
+    void pause();
+}
+
+class Car implements Engine, Media {
+    // Implementations for Engine and Media methods
+}
+```
+
+### Extending Interfaces
+
+Interfaces can also extend other interfaces. This allows you to create a hierarchy of interfaces.
+
+```java
+interface A {
+    void methodA();
+}
+
+interface B extends A {
+    void methodB();
+}
+
+class C implements B {
+    @Override
+    public void methodA() {
+        // Implementation for methodA
+    }
+
+    @Override
+    public void methodB() {
+        // Implementation for methodB
+    }
+}
+```
+
+### Default Methods in Interfaces (Java 8+)
+
+Starting with Java 8, interfaces can have _default methods_. Default methods provide a default implementation for a method in the interface. This allows you to add new methods to an interface without breaking existing implementations.
+
+```java
+interface Engine {
+    void start();
+    void stop();
+
+    default void accelerate() {
+        System.out.println("Default acceleration");
+    }
+}
+```
+
+### Static Methods in Interfaces (Java 8+)
+
+Interfaces can also have static methods, similar to abstract classes. These methods are associated with the interface itself and can be called directly using the interface name.
+
+### Nested Interfaces
+
+Interfaces can be nested inside classes or other interfaces. This allows you to group related interfaces together.
+
+### Abstraction vs. Interfaces: Key Differences
+
+| Feature              | Abstract Class                                    | Interface                                             |
+| -------------------- | ------------------------------------------------- | ----------------------------------------------------- |
+| Abstraction Level    | Partial abstraction (can have concrete methods)   | Full abstraction (all methods are abstract)           |
+| Multiple Inheritance | Not supported                                     | Supported (a class can implement multiple interfaces) |
+| Implementation       | Uses `extends` keyword                            | Uses `implements` keyword                             |
+| Instance Variables   | Can have instance variables                       | Cannot have instance variables                        |
+| Method Access        | Can have `private`, `protected`, `public` methods | All methods are implicitly `public`                   |
+
+### Practical Example: Car Factory
+
+Consider a car factory that produces cars with different engines (petrol, diesel, electric) and media players. Using interfaces, we can define contracts for engines and media players, and then create concrete classes for each type of engine and media player. This allows us to easily create different car configurations without tightly coupling the engine and media player implementations.
+
+### Java Collections Framework
+
+The Java Collections Framework provides a set of interfaces and classes that help in storing and manipulating groups of objects. It's a fundamental part of Java development, essential for organizing data efficiently.
+
+#### Core Interfaces in the Collections Framework
+
+The Collections Framework is built around several core interfaces. Understanding these interfaces is crucial for effectively using the framework.
+
+##### Collection Interface
+
+The `Collection` interface is the root interface in the Collections Framework. It represents a group of objects, known as elements. Common operations include adding, removing, and checking for the presence of elements.
+
+##### List Interface
+
+The `List` interface extends the `Collection` interface and represents an ordered collection of elements. Elements can be accessed by their index, and duplicate elements are allowed. Key implementations of the `List` interface include `ArrayList` and `LinkedList`.
+
+##### Set Interface
+
+The `Set` interface extends the `Collection` interface but does not allow duplicate elements. It models the mathematical set abstraction. Implementations include `HashSet` and `TreeSet`.
+
+##### Map Interface
+
+The `Map` interface represents a collection of key-value pairs. Each key is associated with a value, and keys must be unique within the map. Implementations include `HashMap` and `TreeMap`.
+
+#### Implementing Lists: ArrayList vs. Vector
+
+##### ArrayList
+
+`ArrayList` is a resizable array implementation of the `List` interface. It provides fast access to elements via their index but can be slower for insertions and deletions in the middle of the list.
+
+```java
+List<String> arrayList = new ArrayList<>();
+arrayList.add("Item 1");
+arrayList.add("Item 2");
+System.out.println(arrayList.get(0)); // Output: Item 1
+```
+
+##### Vector
+
+`Vector` is similar to `ArrayList`, but it is synchronized, meaning it is thread-safe. This synchronization comes at a performance cost, so `Vector` is typically used in multi-threaded environments where thread safety is a concern.
+
+> Note: `Vector` is a legacy class and `ArrayList` is generally preferred in single-threaded environments due to its better performance.
+
+```java
+List<String> vector = new Vector<>();
+vector.add("Item 1");
+vector.add("Item 2");
+System.out.println(vector.get(0)); // Output: Item 1
+```
+
+##### Key Differences
+
+The primary difference between `ArrayList` and `Vector` is thread safety. `Vector` is synchronized, making it suitable for multi-threaded environments, while `ArrayList` is not synchronized and offers better performance in single-threaded scenarios.
+
+### Understanding Java Enums
+
+Enums (enumerations) are a special type in Java that represents a group of named constants. They are used to define a set of possible values for a variable.
+
+#### Basic Enum Example
+
+Here's a simple example of an enum representing the days of the week:
+
+```java
+public enum Day {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}
+```
+
+#### Using Enums
+
+Enums can be used like any other data type. You can declare variables of an enum type and assign them one of the enum's constants.
+
+```java
+Day today = Day.MONDAY;
+System.out.println("Today is: " + today);
+```
+
+#### Enum Methods
+
+Enums can have methods and fields, just like classes. This allows you to add behavior and state to your enums.
+
+```java
+public enum Day {
+    MONDAY("Start of the week"),
+    TUESDAY("Second day"),
+    WEDNESDAY("Mid-week"),
+    THURSDAY("Almost there"),
+    FRIDAY("Weekend is near"),
+    SATURDAY("Weekend"),
+    SUNDAY("Relaxing day");
+
+    private String description;
+
+    Day(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+}
+
+Day today = Day.FRIDAY;
+System.out.println(today.getDescription()); // Output: Weekend is near
+```
+
+#### Internal Implementation
+
+Internally, enums are implemented as classes that extend `java.lang.Enum`. Each enum constant is an instance of the enum class. Enums are implicitly `final`, so they cannot be subclassed.
+
+> Note: Enums are very powerful and can significantly improve the readability and maintainability of your code by providing a clear and type-safe way to represent a fixed set of values.
+
+#### Enum Methods: valueOf() and values()
+
+Enums come with two useful methods: `valueOf()` and `values()`.
+
+- `valueOf()`: Returns the enum constant of the specified name.
+- `values()`: Returns an array containing all of the enum constants.
+
+```java
+Day day = Day.valueOf("WEDNESDAY");
+System.out.println(day); // Output: WEDNESDAY
+
+Day[] days = Day.values();
+for (Day d : days) {
+    System.out.println(d);
+}
+```
+
+---
+
+## 🚀 Advanced OOP Concepts
+
+### Custom ArrayList Implementation
+
+The speaker begins by discussing the standard `ArrayList` in Java and then transitions into creating a custom `ArrayList` to understand its internal mechanisms. The goal is to replicate some of the core functionalities of the `ArrayList`, such as adding, removing, and resizing elements.
+
+#### Initial Setup
+
+The custom `ArrayList` starts with a fixed-size integer array. A variable `size` is maintained to track the number of elements currently stored in the list. The initial capacity is set to 10.
+
+```java
+public class CustomArrayList {
+    private int[] data;
+    private int size;
+    private static final int DEFAULT_SIZE = 10;
+
+    public CustomArrayList() {
+        data = new int[DEFAULT_SIZE];
+        size = 0;
+    }
+}
+```
+
+#### Implementing `isFull()` and `resize()`
+
+Before adding elements, it's essential to check if the array is full. If it is, the array needs to be resized. The `isFull()` method checks if the current size equals the array's length.
+
+```java
+public boolean isFull() {
+    return size == data.length;
+}
+```
+
+The `resize()` method doubles the array's size and copies the existing elements to the new array.
+
+> Note: Resizing involves creating a new array with double the capacity, copying the elements from the old array to the new array, and then updating the `data` reference to point to the new array.
+
+```java
+private void resize() {
+    int[] temp = new int[data.length * 2];
+    for (int i = 0; i < data.length; i++) {
+        temp[i] = data[i];
+    }
+    data = temp;
+}
+```
+
+#### Implementing `add()`
+
+The `add()` method first checks if the array is full. If it is, it calls the `resize()` method. Then, it adds the new element to the end of the array and increments the size.
+
+```java
+public void add(int value) {
+    if (isFull()) {
+        resize();
+    }
+    data[size++] = value;
+}
+```
+
+#### Implementing `remove()`
+
+The `remove()` method removes an element at a given index. It shifts the subsequent elements to fill the gap and decrements the size.
+
+```java
+public int remove(int index) {
+    int removed = data[index];
+    for (int i = index; i < size - 1; i++) {
+        data[i] = data[i + 1];
+    }
+    size--;
+    return removed;
+}
+```
+
+#### Implementing `get()` and `size()`
+
+The `get()` method retrieves the element at a given index.
+
+```java
+public int get(int index) {
+    return data[index];
+}
+```
+
+The `size()` method returns the current size of the list.
+
+```java
+public int size() {
+    return size;
+}
+```
+
+#### Implementing `set()`
+
+The `set()` method sets the value at a given index.
+
+```java
+public void set(int index, int value) {
+    data[index] = value;
+}
+```
+
+### Generics
+
+The speaker transitions to Generics to allow the `CustomArrayList` to work with different data types instead of being restricted to integers.
+
+#### Understanding Generics
+
+Generics provide type safety and allow you to write code that can work with different types without the need for casting. In Java, Generics are implemented using type parameters.
+
+#### Implementing Generic `CustomArrayList`
+
+To make the `CustomArrayList` generic, you replace the specific type (e.g., `int`) with a type parameter (e.g., `T`).
+
+```java
+public class CustomGenericArrayList<T> {
+    private Object[] data;
+    private int size;
+    private static final int DEFAULT_SIZE = 10;
+
+    public CustomGenericArrayList() {
+        data = new Object[DEFAULT_SIZE];
+        size = 0;
+    }
+
+    public void add(T value) {
+        if (isFull()) {
+            resize();
+        }
+        data[size++] = value;
+    }
+
+    public T get(int index) {
+        return (T) data[index];
+    }
+
+    private boolean isFull() {
+        return size == data.length;
+    }
+
+    private void resize() {
+        Object[] temp = new Object[data.length * 2];
+        for (int i = 0; i < data.length; i++) {
+            temp[i] = data[i];
+        }
+        data = temp;
+    }
+}
+```
+
+> Note: When using generics, the internal array is of type `Object[]`, and you need to cast the retrieved elements to the appropriate type when using the `get()` method.
+
+#### Type Erasure
+
+The speaker touches on type erasure, which means that the type information is not available at runtime. The Java compiler uses type information to ensure type safety at compile time, but this information is erased during runtime.
+
+### Comparing Objects and the `Comparable` Interface
+
+The speaker discusses how to compare objects in Java using the `Comparable` interface. This is essential for sorting and other operations that require comparing objects.
+
+#### Implementing `Comparable`
+
+To make a class comparable, you need to implement the `Comparable` interface and provide an implementation for the `compareTo()` method.
+
+```java
+class Student implements Comparable<Student> {
+    int rollno;
+    float marks;
+
+    public Student(int rollno, float marks) {
+        this.rollno = rollno;
+        this.marks = marks;
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return (int) (this.marks - o.marks);
+    }
+
+    @Override
+    public String toString() {
+        return this.marks + "";
+    }
+}
+```
+
+> Note: The `compareTo()` method should return a negative value if the current object is less than the other object, a positive value if it is greater, and zero if they are equal.
+
+#### Using `Collections.sort()`
+
+Once a class implements `Comparable`, you can use `Collections.sort()` to sort a list of objects of that class.
+
+```java
+List<Student> list = new ArrayList<>();
+list.add(new Student(1, 90.0f));
+list.add(new Student(2, 80.0f));
+list.add(new Student(3, 95.0f));
+
+Collections.sort(list);
+System.out.println(list);
+```
+
+### Lambda Expressions
+
+The speaker briefly introduces lambda expressions as a way to write concise and functional code. Lambda expressions can be used to implement functional interfaces.
+
+#### Functional Interfaces
+
+A functional interface is an interface with a single abstract method. Lambda expressions can be used to provide an implementation for this method.
+
+```java
+interface Operation {
+    int operate(int a, int b);
+}
+
+public class LambdaFunctions {
+    public static void main(String[] args) {
+        Operation sum = (a, b) -> a + b;
+        System.out.println(sum.operate(5, 3)); // Output: 8
+    }
+}
+```
+
+### Exception Handling
+
+The speaker covers exception handling in Java, including the `try`, `catch`, `finally`, `throw`, and `throws` keywords.
+
+#### Understanding Exceptions
+
+Exceptions are events that disrupt the normal flow of a program. Java provides a mechanism to handle exceptions and prevent programs from crashing.
+
+#### `try`, `catch`, and `finally`
+
+The `try` block contains the code that might throw an exception. The `catch` block contains the code that handles the exception. The `finally` block contains the code that is always executed, regardless of whether an exception is thrown or not.
+
+```java
+try {
+    int result = 10 / 0;
+} catch (ArithmeticException e) {
+    System.out.println("Cannot divide by zero");
+} finally {
+    System.out.println("This will always be executed");
+}
+```
+
+#### `throw` and `throws`
+
+The `throw` keyword is used to throw an exception. The `throws` keyword is used to declare that a method might throw an exception.
+
+```java
+public int divide(int a, int b) throws ArithmeticException {
+    if (b == 0) {
+        throw new ArithmeticException("Cannot divide by zero");
+    }
+    return a / b;
+}
+```
+
+#### Custom Exceptions
+
+You can create your own custom exceptions by extending the `Exception` class.
+
+```java
+class MyException extends Exception {
+    public MyException(String message) {
+        super(message);
+    }
+}
+```
+
+### Object Cloning
+
+The speaker discusses object cloning in Java, including shallow copy and deep copy.
+
+#### Shallow Copy vs. Deep Copy
+
+- **Shallow Copy**: Creates a new object, and then inserts copies of the values from the original object into it. If any of the fields of the original object are references to other objects, just the reference addresses are copied rather than the actual objects.
+- **Deep Copy**: Creates a new object and then recursively copies the objects referenced by the original object.
+
+#### Implementing Cloning
+
+To implement cloning, a class must implement the `Cloneable` interface and override the `clone()` method.
+
+```java
+class Human implements Cloneable {
+    int age;
+    String name;
+    int[] arr;
+
+    public Human(int age, String name, int[] arr) {
+        this.age = age;
+        this.name = name;
+        this.arr = arr;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Human twin = (Human) super.clone(); // Shallow copy
+        twin.arr = new int[this.arr.length];
+        for (int i = 0; i < this.arr.length; i++) {
+            twin.arr[i] = this.arr[i];
+        }
+        return twin;
+    }
+}
+```
+
+> Note: To perform a deep copy, you need to create new instances of all mutable objects referenced by the original object.
+
+### Java Collections Framework
+
+The Java Collections Framework provides a set of interfaces and classes that help in storing and manipulating groups of objects. It's a fundamental part of Java development, essential for organizing data efficiently.
+
+#### Core Interfaces in the Collections Framework
+
+The Collections Framework is built around several core interfaces. Understanding these interfaces is crucial for effectively using the framework.
+
+##### Collection Interface
+
+The `Collection` interface is the root interface in the Collections Framework. It represents a group of objects, known as elements. Common operations include adding, removing, and checking for the presence of elements.
+
+##### List Interface
+
+The `List` interface extends the `Collection` interface and represents an ordered collection of elements. Elements can be accessed by their index, and duplicate elements are allowed. Key implementations of the `List` interface include `ArrayList` and `LinkedList`.
+
+##### Set Interface
+
+The `Set` interface extends the `Collection` interface but does not allow duplicate elements. It models the mathematical set abstraction. Implementations include `HashSet` and `TreeSet`.
+
+##### Map Interface
+
+The `Map` interface represents a collection of key-value pairs. Each key is associated with a value, and keys must be unique within the map. Implementations include `HashMap` and `TreeMap`.
+
+#### Implementing Lists: ArrayList vs. Vector
+
+##### ArrayList
+
+`ArrayList` is a resizable array implementation of the `List` interface. It provides fast access to elements via their index but can be slower for insertions and deletions in the middle of the list.
+
+```java
+List<String> arrayList = new ArrayList<>();
+arrayList.add("Item 1");
+arrayList.add("Item 2");
+System.out.println(arrayList.get(0)); // Output: Item 1
+```
+
+##### Vector
+
+`Vector` is similar to `ArrayList`, but it is synchronized, meaning it is thread-safe. This synchronization comes at a performance cost, so `Vector` is typically used in multi-threaded environments where thread safety is a concern.
+
+> Note: `Vector` is a legacy class and `ArrayList` is generally preferred in single-threaded environments due to its better performance.
+
+```java
+List<String> vector = new Vector<>();
+vector.add("Item 1");
+vector.add("Item 2");
+System.out.println(vector.get(0)); // Output: Item 1
+```
+
+##### Key Differences
+
+The primary difference between `ArrayList` and `Vector` is thread safety. `Vector` is synchronized, making it suitable for multi-threaded environments, while `ArrayList` is not synchronized and offers better performance in single-threaded scenarios.
+
+### Understanding Java Enums
+
+Enums (enumerations) are a special type in Java that represents a group of named constants. They are used to define a set of possible values for a variable.
+
+#### Basic Enum Example
+
+Here's a simple example of an enum representing the days of the week:
+
+```java
+public enum Day {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}
+```
+
+#### Using Enums
+
+Enums can be used like any other data type. You can declare variables of an enum type and assign them one of the enum's constants.
+
+```java
+Day today = Day.MONDAY;
+System.out.println("Today is: " + today);
+```
+
+#### Enum Methods
+
+Enums can have methods and fields, just like classes. This allows you to add behavior and state to your enums.
+
+```java
+public enum Day {
+    MONDAY("Start of the week"),
+    TUESDAY("Second day"),
+    WEDNESDAY("Mid-week"),
+    THURSDAY("Almost there"),
+    FRIDAY("Weekend is near"),
+    SATURDAY("Weekend"),
+    SUNDAY("Relaxing day");
+
+    private String description;
+
+    Day(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+}
+
+Day today = Day.FRIDAY;
+System.out.println(today.getDescription()); // Output: Weekend is near
+```
+
+#### Internal Implementation
+
+Internally, enums are implemented as classes that extend `java.lang.Enum`. Each enum constant is an instance of the enum class. Enums are implicitly `final`, so they cannot be subclassed.
+
+> Note: Enums are very powerful and can significantly improve the readability and maintainability of your code by providing a clear and type-safe way to represent a fixed set of values.
+
+#### Enum Methods: valueOf() and values()
+
+Enums come with two useful methods: `valueOf()` and `values()`.
+
+- `valueOf()`: Returns the enum constant of the specified name.
+- `values()`: Returns an array containing all of the enum constants.
+
+```java
+Day day = Day.valueOf("WEDNESDAY");
+System.out.println(day); // Output: WEDNESDAY
+
+Day[] days = Day.values();
+for (Day d : days) {
+    System.out.println(d);
+}
+```
+
+---
+
+## 🎉 Conclusion
+
+This comprehensive guide has covered all the fundamental and advanced concepts of Object-Oriented Programming in Java. From basic classes and objects to complex topics like generics, exception handling, and object cloning, you now have a solid foundation to build robust, maintainable, and scalable Java applications.
+
+### Key Takeaways
+
+1. **Classes and Objects**: The building blocks of OOP, where classes serve as blueprints and objects are instances.
+2. **Static Members**: Belong to the class itself, not individual objects.
+3. **Inheritance**: Promotes code reuse and establishes class hierarchies.
+4. **Polymorphism**: Allows objects to take multiple forms through method overloading and overriding.
+5. **Encapsulation**: Protects data by controlling access through access modifiers.
+6. **Abstraction**: Hides complexity and exposes only essential features.
+7. **Abstract Classes and Interfaces**: Provide contracts for implementation.
+8. **Advanced Concepts**: Generics, exception handling, and object cloning for robust applications.
+
+Remember, the best way to master these concepts is through practice. Try implementing these examples, experiment with variations, and build your own projects to reinforce your understanding.
+
+Happy coding! 🚀

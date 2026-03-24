@@ -1,0 +1,478 @@
+---
+title: Operating Systems
+description: A Comprehensive Guide on Operating Systems
+date: 2025-06-16
+tags: ["operating-systems", "computer-science"]
+---
+
+#### What is an Operating System?
+
+An operating system (OS) serves as an intermediary between users and hardware.
+It manages resources, allocates them efficiently, and provides a platform for applications to run.
+
+Key aspects of an OS include:
+
+1.  **Intermediate Role**: The OS acts as a bridge between users and hardware, facilitating communication and instruction execution.
+2.  **Resource Manager**: The OS allocates resources such as CPU time, memory, and system buses among various processes.
+3.  **Platform Provider**: The OS provides a platform on which applications can be installed and executed.
+
+#### Goals and Functions
+
+- **Primary Goal**: Convenience and user-friendliness.
+- **Secondary Goals**: Efficiency, reliability, and maintainability.
+
+**_Functions_** are the specific tasks performed by the OS to achieve these goals, including _process management, memory management, input/output device management, file management, network management, and security._
+
+#### Major Components of an Operating System
+
+The major components include:
+
+- **Kernel**: The core part of the OS responsible for management tasks.
+- **Process Management**: Includes process scheduling, concurrency control, and PCB (Process Control Block) management.
+- **Memory Management**: Involves physical and virtual memory allocation.
+- **File System**: Manages files and directories.
+- **Device Management**: Includes device drivers and managers.
+- **Security and Access Control**: Authentication, authorization, and encryption.
+- **User Interface**: Command line and GUI (Graphical User Interface).
+- **Networking**: Manages network communications.
+
+#### Types of Operating Systems
+
+##### Batch Operating System
+
+Early computers used batch operating systems, where users prepared jobs consisting of programs, control information, and input data. These jobs were processed sequentially.
+
+- **Job:** A bundle of program, control information, and input data.
+- **Batch:** A collection of similar jobs.
+
+##### Spooling
+
+Spooling (Simultaneous Peripheral Operations Online) involves sending data to input/output devices via secondary memory, reducing the load on the processor.
+
+> **Example**: Print spooling allows the CPU to continue processing while the printer handles the printing task in the background.
+
+##### Multiprogramming
+
+Multiprogramming allows multiple processes to reside in memory simultaneously, improving CPU utilization by switching between processes when one is waiting for an event.
+
+> **Note**: Multiprogramming does not mean executing multiple processes in parallel. The CPU executes one process at a time, but switches between them rapidly.
+
+##### Multitasking (Time Sharing)
+
+Multitasking is a _logical extension_ of multiprogramming, where the CPU rapidly switches between multiple tasks, giving users the impression of parallel execution.
+
+##### Multiprocessing
+
+Multiprocessing involves using two or more CPUs within the same computer, enabling true parallel execution of multiple processes.
+
+###### Symmetric vs. Asymmetric Multiprocessing
+
+- **Symmetric Multiprocessing (SMP):** Each processor performs the same tasks and has equal access to system resources.
+- **Asymmetric Multiprocessing (AMP):** Each processor is assigned a specific task or role.
+
+##### Real-Time Operating Systems
+
+Real-time operating systems (RTOS) are designed for applications with strict time constraints. They are categorized into hard real-time and soft real-time systems.
+
+- **Hard Real-Time**: Systems where deadlines must be met strictly.
+- **Soft Real-Time**: Systems where missing deadlines is tolerable but undesirable.
+
+##### Distributed Operating Systems
+
+Distributed operating systems manage a collection of independent networked computers, allowing them to work together on tasks.
+
+###### Advantages:
+
+- Resource Sharing
+- Improved Computation Speed
+- Enhanced Communication
+
+#### Structure of Operating Systems
+
+Operating system structures include:
+
+- **Simple Structure**: Basic structure without well-defined modules.
+- **Layered Approach**: Organizes the OS into layers, each providing services to the layer above.
+- **Microkernel Approach**: Removes non-essential components from the kernel, implementing them as user-level programs.
+
+#### User Interface
+
+The user interface facilitates communication between users and the operating system. Common types include:
+
+- **Command Line Interpreter (CLI)**: Allows users to interact with the OS via commands.
+- **Graphical User Interface (GUI)**: Provides a visual interface with icons and menus.
+- **Touch Interface**: Used in mobile devices, allowing interaction via touch gestures.
+
+#### System Calls
+
+System calls provide an interface for user programs to request services from the operating system kernel.
+They are essential for performing tasks that require privileged access.
+
+###### User Mode v/s Kernel Mode
+
+- **User Mode:** The mode in which user programs execute.
+- **Kernel Mode:** The mode in which the OS kernel executes.
+
+System calls cause a switch from user mode to kernel mode.
+
+#### Process Management
+
+##### What is a Process?
+
+A process is a program in execution. It is an active entity that requires resources such as CPU time, memory, and registers. A program, on the other hand, is a passive entity consisting of instructions stored on disk.
+
+- **Program:** A file containing instructions stored on disk.
+- **Process:** A program loaded into memory and executing.
+
+##### Process Control Block (PCB)
+
+The Process Control Block (PCB) is a data structure that stores metadata about a process, including its state, program counter, registers, and memory limits.
+
+##### Process States
+
+A process goes through various states during its lifecycle:
+
+- **New**: The process is being created.
+- **Ready**: The process is ready to execute.
+- **Running**: The process is being executed by the CPU.
+- **Waiting**: The process is waiting for an event or I/O operation.
+- **Terminated**: The process has completed execution.
+
+##### Schedulers
+
+Schedulers are programs that manage the movement of processes between different states. Types of schedulers include:
+
+- **Long-Term Scheduler**: Determines which processes enter the ready queue.
+- **Short-Term Scheduler**: Selects processes from the ready queue to allocate CPU time.
+- **Mid-Term Scheduler**: Swaps processes in and out of memory to optimize CPU usage.
+
+##### Dispatcher
+
+The dispatcher is a module that gives control of the CPU to the process selected by the short-term scheduler. It involves context switching and transitioning to user mode.
+
+##### CPU-Bound vs. I/O-Bound Processes
+
+- **CPU-Bound Processes**: Spend most of their time performing computations.
+- **I/O-Bound Processes**: Spend most of their time waiting for input/output operations.
+
+##### Context Switch
+
+A context switch is the process of saving the state of one process and loading the state of another process.
+
+#### CPU Scheduling
+
+CPU scheduling is the process of determining which process in the ready queue is allocated to the CPU.
+
+##### Scheduling Criteria
+
+- **CPU Utilization:** The percentage of time the CPU is busy.
+- **Throughput:** The number of processes completed per unit time.
+- **Turnaround Time:** The time it takes for a process to complete.
+- **Waiting Time:** The time a process spends waiting in the ready queue.
+- **Response Time:** The time it takes for a process to produce its first response.
+
+##### Preemptive vs. Non-Preemptive Scheduling
+
+- **Preemptive Scheduling:** A process can be interrupted during its execution.
+- **Non-Preemptive Scheduling:** A process runs until it completes or voluntarily releases the CPU.
+
+#### Scheduling Algorithms -
+
+##### First-Come, First-Served (FCFS)
+
+FCFS is the simplest scheduling algorithm, where processes are executed in the order they arrive. It is non-preemptive.
+
+###### Advantages:
+
+- Simple to implement
+- Fair
+
+###### Disadvantages:
+
+- Can lead to long waiting times
+- Not suitable for time-sharing systems
+- Convoy effect
+
+##### Shortest Job First (SJF)
+
+SJF selects the process with the shortest burst time for execution. It can be preemptive or non-preemptive.
+
+###### Advantages:
+
+- Minimizes average waiting time
+- Optimal (preemptive version)
+
+###### Disadvantages:
+
+- Requires knowledge of burst time
+- Can lead to starvation
+
+##### Priority Scheduling
+
+Priority scheduling assigns a priority to each process, and the process with the highest priority is executed first. It can be preemptive or non-preemptive.
+
+###### Advantages:
+
+- Allows important processes to be executed first
+
+###### Disadvantages:
+
+- Can lead to starvation
+- Aging
+
+##### Round Robin
+
+Round Robin allocates a fixed time quantum to each process, ensuring fair distribution of CPU time. It is preemptive.
+
+###### Advantages:
+
+- Fair
+- Good response time
+
+###### Disadvantages:
+
+- Performance depends on the time quantum
+
+##### Multilevel Queue Scheduling
+
+Multilevel queue scheduling involves maintaining multiple ready queues, each with its own scheduling algorithm.
+
+##### Multilevel Feedback Queue Scheduling
+
+Multilevel feedback queue scheduling allows processes to move between different queues based on their behavior.
+
+#### Process Synchronization
+
+Process synchronization involves coordinating the execution of multiple processes to ensure data consistency and avoid race conditions.
+
+##### Race Condition
+
+A race condition occurs when the output of a process depends on the execution sequence of multiple processes.
+
+##### Critical Section
+
+A critical section is a section of code where a process accesses shared resources.
+
+##### Critical Section Problem
+
+The critical section problem arises when multiple processes access shared resources simultaneously. Solutions must satisfy mutual exclusion, progress, and bounded waiting.
+
+##### Requirements for a Solution to the Critical Section Problem
+
+- **Mutual Exclusion:** Only one process can be in the critical section at a time.
+- **Progress:** If no process is in the critical section, a process that wants to enter the critical section should be able to do so.
+- **Bounded Waiting:** There is a limit on the amount of time a process has to wait to enter the critical section.
+
+##### Peterson's Solution
+
+Peterson's solution is a classic solution to the critical section problem for two processes. It uses a shared variable `turn` to indicate which process can enter the critical section, and a shared array `flag` to indicate whether a process wants to enter the critical section.
+
+##### Semaphores
+
+Semaphores are synchronization tools that can be used to solve the critical section problem for multiple processes.
+They are integer variables that can be accessed through two atomic operations: `wait` and `signal`.
+
+#### Classic Problems of Synchronization
+
+- **Producer-Consumer Problem:** A producer process produces items and places them in a buffer, while a consumer process consumes items from the buffer.
+
+- **Readers-Writers Problem:** Multiple reader processes can read a shared resource simultaneously, but only one writer process can write to the shared resource at a time.
+
+- **Dining-Philosophers Problem:** Five philosophers are sitting around a table, each with a plate of food and a chopstick on either side. To eat, a philosopher needs both chopsticks. The problem is to design a protocol that allows the philosophers to eat without starving.
+
+- **Sleeping-Barber Problem:** A barber sleeps until a customer arrives. When a customer arrives, the barber wakes up and cuts the customer's hair. If there are no free chairs in the waiting room, the customer leaves.
+
+##### Hardware Synchronization
+
+Hardware synchronization involves using hardware-level mechanisms to solve synchronization problems.
+
+- **Disabling Interrupts:** A process can disable interrupts to prevent context switches while it is in the critical section.
+- **Test-and-Set Instruction:** An atomic instruction that tests and sets a lock variable.
+
+#### Deadlock
+
+Deadlock is a situation where two or more processes are blocked indefinitely, waiting for each other to release resources.
+
+##### Necessary Conditions for Deadlock
+
+1.  **Mutual Exclusion**: Resources are used in a mutually exclusive fashion. (Resources are non-sharable)
+2.  **Hold and Wait**: A process holds resources while waiting for additional resources.
+3.  **No Preemption**: Resources cannot be forcibly taken away from a process.
+4.  **Circular Wait**: A circular chain of processes exists, where each process is waiting for a resource held by the next process in the chain.
+
+##### Deadlock Handling
+
+- **Deadlock Prevention:** Design the system to prevent deadlocks from occurring.
+- **Deadlock Avoidance:** Use algorithms to avoid allocating resources in a way that could lead to deadlock.
+- **Deadlock Detection and Recovery:** Detect deadlocks and take action to recover from them.
+- **Deadlock Ignorance:** Ignore deadlocks and hope they don't occur.
+
+##### Deadlock Prevention Strategies
+
+- **Mutual Exclusion:** Not possible to violate.
+- **Hold and Wait:**
+  - Require processes to request all resources at once.
+  - Require processes to release all resources before requesting additional resources.
+- **No Preemption:** Allow resources to be forcibly taken away from a process.
+- **Circular Wait:** Impose a total ordering on all resource types and require processes to request resources in increasing order.
+
+##### Deadlock Avoidance: Banker's Algorithm
+
+The Banker's Algorithm is a deadlock avoidance algorithm that requires the system to know in advance the maximum number of resources that each process may request.
+
+##### Deadlock Detection and Recovery
+
+- **Detection:** Periodically check for deadlocks.
+- **Recovery:**
+  - Process Termination
+  - Resource Preemption
+
+##### Deadlock Ignorance: Ostrich Algorithm
+
+The Ostrich Algorithm is a strategy of ignoring deadlocks, based on the assumption that they are rare and the cost of preventing or detecting them is high.
+
+### Fork Command and Threading
+
+#### Fork Command
+
+The `fork` command creates a new process that is a copy of the existing process. This can be useful for creating multiple processes that need to perform similar tasks.
+
+#### Threading
+
+Threading allows a process to have multiple threads of execution. Threads share the same memory space, which makes it easier for them to communicate with each other.
+
+##### User-Level Threads vs. Kernel-Level Threads
+
+- **User-Level Threads:** Managed by a user-level library. The kernel is not aware of the threads.
+- **Kernel-Level Threads:** Managed by the kernel. The kernel is aware of the threads.
+
+##### Multithreading Models
+
+- **Many-to-One:** Many user-level threads are mapped to one kernel-level thread.
+- **One-to-One:** Each user-level thread is mapped to a kernel-level thread.
+- **Many-to-Many:** Many user-level threads are mapped to many kernel-level threads.
+
+### Memory Management
+
+#### Memory Hierarchy
+
+- **Registers:** Fastest and most expensive memory.
+- **Cache:** Fast memory used to store frequently accessed data.
+- **Main Memory (RAM):** Primary memory used to store programs and data that are currently being used.
+- **Secondary Storage (Disk):** Slower and less expensive memory used to store data that is not currently being used.
+
+#### Locality of Reference
+
+Locality of reference is the tendency for a process to access the same memory locations repeatedly over a short period of time.
+
+- **Spatial Locality:** Accessing memory locations that are near each other.
+- **Temporal Locality:** Accessing the same memory location repeatedly over a short period of time.
+
+#### Operating System Responsibilities
+
+- **Address Translation:** Translating logical addresses to physical addresses.
+- **Allocation and Deallocation:** Allocating and deallocating memory to processes.
+- **Tracking:** Keeping track of which memory is being used and which is free.
+- **Memory Protection:** Preventing processes from accessing memory that they are not authorized to access.
+
+#### Contiguous vs. Non-Contiguous Allocation
+
+- **Contiguous Allocation:** Each process is allocated a contiguous block of memory.
+- **Non-Contiguous Allocation:** A process can be allocated memory in multiple non-contiguous blocks.
+
+#### Contiguous Allocation
+
+- **Fixed-Size Partitioning:** Memory is divided into fixed-size partitions.
+- **Variable-Size Partitioning:** Memory is allocated in variable-size blocks.
+
+#### Allocation Algorithms
+
+- **First-Fit:** Allocate the first available block that is large enough.
+- **Best-Fit:** Allocate the smallest available block that is large enough.
+- **Worst-Fit:** Allocate the largest available block.
+- **Next-Fit:** Start searching for a free block from the location of the last allocation.
+
+#### Fragmentation
+
+- **Internal Fragmentation:** Wasted space within a partition.
+- **External Fragmentation:** Wasted space between partitions.
+
+#### Non-Contiguous Allocation: Paging
+
+Paging is a memory management scheme that allows the physical address space of a process to be non-contiguous.
+
+- **Pages:** Logical memory is divided into fixed-size blocks called pages.
+- **Frames:** Physical memory is divided into fixed-size blocks called frames.
+- **Page Table:** A data structure that maps pages to frames.
+- **Translation Lookaside Buffer (TLB):** A cache that stores recent page table entries.
+
+#### Page Fault
+
+A page fault occurs when a process tries to access a page that is not in memory.
+
+#### Page Replacement Algorithms
+
+- **First-In, First-Out (FIFO):** Replace the oldest page.
+- **Optimal:** Replace the page that will not be used for the longest time.
+- **Least Recently Used (LRU):** Replace the page that has not been used for the longest time.
+
+#### Thrashing
+
+Thrashing is a situation in which a process spends more time paging than executing.
+
+#### Working-Set Model
+
+The working-set model is a memory management technique that allocates memory to a process based on its working set, which is the set of pages that the process is actively using.
+
+### Disk Scheduling
+
+Disk scheduling is the process of determining the order in which disk requests are serviced.
+
+#### Disk Structure
+
+- **Platters:** Circular disks with magnetic surfaces.
+- **Tracks:** Concentric circles on the platters.
+- **Sectors:** Divisions of the tracks.
+- **Head:** Reads and writes data on the platters.
+- **Disk Arm:** Moves the head across the platters.
+
+#### Disk Performance Metrics
+
+- **Seek Time:** The time it takes for the head to move to the correct track.
+- **Rotational Latency:** The time it takes for the disk to rotate to the correct sector.
+- **Transfer Time:** The time it takes to transfer data.
+
+#### Disk Scheduling Algorithms
+
+- **First-Come, First-Served (FCFS):** Service requests in the order they arrive.
+- **Shortest-Seek-Time-First (SSTF):** Service the request that is closest to the current head position.
+- **SCAN (Elevator Algorithm):** Move the head in one direction, servicing requests along the way, then reverse direction.
+- **C-SCAN (Circular SCAN):** Move the head in one direction, servicing requests along the way, then return to the beginning without servicing requests.
+- **LOOK:** Similar to SCAN, but only move the head as far as the last request in each direction.
+- **C-LOOK:** Similar to C-SCAN, but only move the head as far as the last request in one direction.
+
+### File System
+
+#### File Organization
+
+- **Sequential:** Files are stored in a linear sequence.
+- **Direct:** Files can be accessed directly using a key.
+- **Serial:** Files are accessed in the order they were created.
+- **Indexed Sequential:** Files are accessed sequentially or directly using an index.
+
+#### Access Methods
+
+- **Sequential Access:** Access files in order.
+- **Direct Access:** Access files directly using a key.
+- **Indexed Access:** Access files using an index.
+
+#### Directory Structure
+
+- **Single-Level Directory:** All files are stored in a single directory.
+- **Two-Level Directory:** Each user has their own directory.
+- **Hierarchical Directory:** Files are organized in a tree-like structure.
+
+#### File Protection
+
+- **Access Control Lists (ACLs):** Lists of users and their permissions for each file.
+- **Capability Lists:** Lists of files and the permissions that each user has for them.
