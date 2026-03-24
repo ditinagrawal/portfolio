@@ -5,34 +5,58 @@ date: 2025-01-10
 tags: ["saas", "reviews", "social-proof"]
 image: /projects/trust-wall.png
 liveDemo: https://trust-wall.com
-techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Convex", "Cloudflare", "Bun"]
+techStack:
+  ["Next.js", "TypeScript", "Tailwind CSS", "Convex", "Cloudflare", "Bun"]
 featured: true
 ---
 
 # TrustWall
 
-TrustWall is a powerful social proof platform that helps businesses collect, organize, and display customer reviews across their entire sales funnel. It transforms authentic customer feedback into conversion-driving proof.
+TrustWall is a full-featured social proof platform that lets businesses collect, curate, and display authentic text and video reviews across their entire funnel — from landing pages to checkout flows. One link to collect, one embed to display, zero friction for customers.
 
-## The Problem
+## Why I Built This
 
-Businesses struggle to collect and showcase customer reviews in a way that genuinely builds trust and drives conversions. Scattered testimonials across different platforms make it hard to present a unified, compelling narrative of customer satisfaction.
+Most review tools out there are bloated, expensive, and built for enterprises. Small businesses and indie founders either end up stitching together free tools that don't talk to each other, or they just skip social proof altogether. I wanted to build something that gets you from zero reviews to a conversion machine in under five minutes — no complex onboarding, no per-review fees, no nonsense.
 
-## The Solution
+## What It Does
 
-TrustWall provides a centralized platform to collect both text and video reviews, organize them intelligently, and display them at the right touchpoints across your funnel — from landing pages to checkout flows.
+TrustWall turns the messy process of collecting and showcasing customer feedback into four simple steps:
+
+1. **Collect** — Share a single collection link with your customers. They leave text or video reviews in under a minute, no account required on their end.
+2. **Curate** — Approve, tag, and organize reviews from your dashboard. Filter the noise, surface the best stories.
+3. **Display** — Embed stunning widgets (walls, carousels, badges) anywhere on your site with a single snippet. Works with WordPress, Shopify, Webflow, Framer, and more.
+4. **Convert** — Watch social proof do the heavy lifting. More trust, more sales, more growth.
 
 ## Key Features
 
-- **Review Collection** — Easily collect text and video testimonials from customers through customizable forms
-- **Smart Organization** — Tag, categorize, and filter reviews to display the right proof at the right time
-- **Embeddable Widgets** — Drop review walls, carousels, and badges anywhere on your site
-- **Video Testimonials** — Capture and display authentic video reviews for maximum impact
-- **Analytics Dashboard** — Track how social proof impacts your conversion rates
+- **One-Click Collection** — Customers leave reviews in under 60 seconds. No sign-ups, no friction, no follow-up apps needed.
+- **Video Testimonials** — Let customers record authentic video reviews directly in their browser. No app downloads, no upload limits — just real stories.
+- **Embed Anywhere** — Drop review widgets into your website with one snippet. Works with WordPress, Shopify, Webflow, Framer, and more.
+- **Fully Customizable Widgets** — Match your brand colors, layout, and style. No CSS knowledge required.
+- **Review Moderation** — Every review goes through your approval process. Filter the noise, curate what matters, and organize into collections.
+- **Import Existing Reviews** — Already have reviews on Google, Yelp, G2, or a CSV file? Pull them into TrustWall so you have everything in one place.
+- **Public Review Pages** — Get a shareable review page for your brand. Perfect for linking in bios, emails, and proposals.
+- **Mobile-First Design** — Every widget and collection page is fully responsive. Looks great on any screen size, any device.
+- **Rich Review Data** — Collect star ratings, reviewer details, photos, and more. Display the proof that matters most to your audience.
 
-## How It Works
+## The Tech Behind It
 
-1. Set up your review collection form and share it with customers
-2. Reviews flow into your TrustWall dashboard for moderation
-3. Organize reviews by product, tag, or rating
-4. Embed beautiful review widgets on your site with a single line of code
-5. Watch your conversion rates improve with authentic social proof
+This was a one-month build and by far the most technically challenging project I've shipped. Building TrustWall pushed me deep into technologies I hadn't worked with before, and I came out the other side a significantly better developer.
+
+**Convex** powers the entire backend — real-time database, server functions, file storage, and authentication. Choosing Convex meant I could skip the usual backend boilerplate and focus on the product. Real-time syncing across the dashboard came for free.
+
+**Cloudflare** handles the heavy lifting on the edge — media delivery, CDN caching, and security. Working with Cloudflare's ecosystem taught me a lot about edge computing and performance optimization at scale.
+
+**File handling** was one of the trickiest parts. Video testimonials mean dealing with uploads, storage, and delivery — all while keeping things secure and performant. Building a proper file pipeline that handles edge cases (large files, slow connections, format validation) was a challenge that taught me more about secure file handling than any tutorial could.
+
+**Next.js** with **TypeScript** and **Tailwind CSS** on the frontend, deployed with **Bun** for speed. The embed widgets had to be lightweight, framework-agnostic, and load fast on any site — that constraint shaped a lot of the architecture.
+
+## What I Learned
+
+TrustWall stretched my abilities across the entire stack. Working with Convex's real-time architecture, handling secure file uploads through Cloudflare, building embeddable widgets that work across different platforms, implementing review moderation workflows, and dealing with video processing pipelines — every feature came with its own set of hard problems.
+
+I used AI as part of my workflow during the build, but the real learning came from reading docs, debugging edge cases, and working through hard problems myself. AI helped me move faster, but it didn't replace the deep understanding I had to build — and that's what made this project so valuable.
+
+## Pricing
+
+TrustWall has a free tier to get started, but the full experience is a paid product. One affordable price, no per-review fees, full data ownership, and you can cancel anytime.

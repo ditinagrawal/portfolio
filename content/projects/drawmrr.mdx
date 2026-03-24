@@ -9,30 +9,37 @@ techStack: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "Bun"]
 featured: false
 ---
 
-# DrawMrr
+# DrawMRR
 
-DrawMrr lets indie hackers and SaaS founders turn their MRR (Monthly Recurring Revenue) milestones into beautiful, share-ready visuals. Perfect for celebrating wins and sharing progress on social media.
+DrawMRR is a free tool that lets indie hackers and SaaS founders sketch their MRR journey as a hand-drawn progress bar — then export it as a PNG, JPG, animated GIF, or video to share anywhere.
 
-## The Problem
+## Why I Built This
 
-Indie hackers love sharing their MRR milestones on Twitter/X, but creating visually appealing progress graphics is time-consuming. Most end up posting plain text or screenshots of dashboards that lack personality.
-
-## The Solution
-
-DrawMrr turns your MRR numbers into hand-drawn style progress bars and milestone graphics that stand out in social feeds. It's the fastest way to create beautiful MRR visuals.
-
-## Key Features
-
-- **Hand-Drawn Style** — Unique sketch-style progress bars that feel personal and authentic
-- **Multiple Export Formats** — Export as PNG, JPG, animated GIF, or video
-- **Customizable Themes** — Match your personal brand with different color schemes and styles
-- **Milestone Markers** — Highlight key revenue milestones on your journey
-- **Quick Share** — One-click sharing to Twitter/X and other platforms
+Indie hackers love sharing MRR milestones on Twitter/X, but the options are either plain text numbers or boring dashboard screenshots. I wanted a quick way to turn revenue numbers into something that actually looks good in a feed — something with personality. So I built DrawMRR over a weekend.
 
 ## How It Works
 
-1. Enter your MRR numbers and milestones
-2. Choose a visual style and customize colors
-3. Preview your hand-drawn MRR progress bar
-4. Export as PNG, JPG, GIF, or video
-5. Share your milestone with the world
+1. Set your start, current, and goal MRR values.
+2. Tweak the title, unit label, font, and color palette to match your style.
+3. Preview the hand-drawn progress bar with a fill animation.
+4. Hit export to grab a PNG, JPG, animated GIF, or video you can drop straight into a tweet, changelog, or investor update.
+
+That's it. No sign-up, no paywall, no friction.
+
+## Features
+
+- **Hand-Drawn Style** — Progress bars rendered with a sketchy, rough aesthetic (powered by adjustable roughness) that feels personal and stands out from polished dashboards.
+- **Customizable Everything** — Choose your font family, color palette, step count, unit labels, and title. Make it yours.
+- **Fill Animation** — Run a satisfying fill animation to see your progress come to life. Great for screen recordings and GIFs.
+- **Multiple Export Formats** — Export as PNG, JPG, animated GIF, or video. Whatever your platform needs.
+- **Instant Preview** — See changes in real time as you adjust settings. No waiting, no rendering delays.
+
+## The Build
+
+DrawMRR was a one-to-two day build. It's a simple, focused tool — no backend, no auth, no database. Just a Next.js app with TypeScript, Tailwind CSS, and shadcn/ui for the controls. The canvas rendering handles the hand-drawn aesthetic, and the export pipeline converts it to multiple formats client-side.
+
+I barely used AI in the build. It was a quick project where the scope was small enough to just sit down and ship it.
+
+## Free Forever
+
+DrawMRR is completely free. No accounts, no limits, no catches. Just open it, make your visual, and share your milestone.
