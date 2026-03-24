@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "next-view-transitions";
 import { JetBrains_Mono } from "next/font/google";
 import Image from "next/image";
 
@@ -10,7 +11,6 @@ import {
   IconWorld,
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
-import { Link } from "next-view-transitions";
 
 import { featuredProject } from "@/lib/resume";
 import { cn } from "@/lib/utils";
@@ -69,7 +69,8 @@ export const FeaturedProject = () => {
               </p>
               <ul className="mt-6 space-y-2 text-sm text-zinc-600">
                 <li className="flex items-center gap-2">
-                  <IconChecks className="size-4 shrink-0 text-emerald-700" /> Built with{" "}
+                  <IconChecks className="size-4 shrink-0 text-emerald-700" />{" "}
+                  Built with{" "}
                   {featuredProject.techStack.map((Icon, i) => (
                     <Icon key={i} />
                   ))}
@@ -82,7 +83,7 @@ export const FeaturedProject = () => {
                 ))}
               </ul>
             </div>
-            <div className="mt-8 flex items-center gap-x-4">
+            <div className="mt-8 flex items-center justify-between gap-x-4">
               {featuredProject.liveDemo && (
                 <Link
                   href={featuredProject.liveDemo}
@@ -94,9 +95,9 @@ export const FeaturedProject = () => {
               )}
               <Link
                 href={`/projects/${featuredProject.id}`}
-                className="flex items-center gap-2 text-sm text-zinc-600 transition-colors duration-300 hover:text-zinc-800"
+                className="flex items-center gap-1 text-sm text-zinc-600 transition-colors duration-300 hover:text-zinc-800"
               >
-                <IconArrowRight className="size-5" /> Read More
+                Read More &rarr;
               </Link>
             </div>
           </div>
@@ -106,7 +107,7 @@ export const FeaturedProject = () => {
               alt={featuredProject.title}
               width={512}
               height={300}
-              className="w-full md:scale-150 md:rotate-x-15 md:-rotate-y-10 md:object-contain"
+              className="w-full md:scale-150"
               priority
               draggable={false}
             />

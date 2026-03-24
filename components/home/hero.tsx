@@ -33,7 +33,7 @@ export const Hero = () => {
           className="max-w-xl space-x-1.5 text-lg tracking-tight text-zinc-600"
           {...fadeUp(0.1)}
         >
-          A self-taught developer having expertise in building beautiful and
+          A full-stack developer with expertise in building beautiful and
           functional websites using <NextjsIcon /> <TypeScriptIcon />{" "}
           <TailwindCSSIcon /> <MotionIcon /> <PostgreSQLIcon /> <BunIcon />.
           <br />I also love to share my knowledge with others by writing

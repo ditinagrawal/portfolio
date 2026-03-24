@@ -8,6 +8,8 @@ import { motion } from "motion/react";
 import {
   AWSIcon,
   BunIcon,
+  CloudflareIcon,
+  ConvexIcon,
   NextjsIcon,
   PostgreSQLIcon,
   PrismaIcon,
@@ -33,6 +35,8 @@ const icons = [
   ShadcnUI,
   PostgreSQLIcon,
   PrismaIcon,
+  ConvexIcon,
+  CloudflareIcon,
   AWSIcon,
   ReactQueryIcon,
   BunIcon,
